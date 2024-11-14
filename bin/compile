@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+# Usage: bin/compile <build-dir> <cache-dir> <env-dir>
