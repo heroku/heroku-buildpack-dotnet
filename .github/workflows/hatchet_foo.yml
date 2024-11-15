@@ -18,6 +18,7 @@ jobs:
         HEROKU_DISABLE_AUTOUPDATE: 1
         PARALLEL_SPLIT_TEST_PROCESSES: 70
         RSPEC_RETRY_RETRY_COUNT: 2
+        HEROKU_DEBUG: 1
     steps:
       - name: Checkout
         uses: actions/checkout@v4
