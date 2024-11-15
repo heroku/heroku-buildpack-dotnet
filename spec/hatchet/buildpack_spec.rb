@@ -7,7 +7,8 @@ RSpec.describe 'Buildpack detection' do
   # are already tested in the specs for general buildpack functionality.
 
   context 'when a valid .NET app is detected' do
-    let(:app) { Hatchet::Runner.new('spec/fixtures/basic_web_8.0') }
+    let(:buildpacks) { [ENV.fetch('HATCHET_BUILDPACK_BASE')] }
+    let(:app) { Hatchet::Runner.new('spec/fixtures/basic_web_8.0', buildpacks:) }
 
     it 'returns foo' do
       app.deploy do |app|
