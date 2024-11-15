@@ -6,11 +6,18 @@ on:
       branches:
         - main
     pull_request:
-
 jobs:
   upload-tarball:
     runs-on: pub-hk-ubuntu-24.04-ip
-
+    env:
+        HATCHET_APP_LIMIT: 300
+        HATCHET_DEFAULT_STACK: "heroku-24"
+        HATCHET_EXPENSIVE_MODE: 1
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        HEROKU_API_USER: ${{ secrets.HEROKU_API_USER }}
+        HEROKU_DISABLE_AUTOUPDATE: 1
+        PARALLEL_SPLIT_TEST_PROCESSES: 70
+        RSPEC_RETRY_RETRY_COUNT: 2
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -45,3 +52,15 @@ jobs:
         env:
           GET_URL: ${{ steps.fetch-upload-url.outputs.get_url }}
         run: echo "Get URL is $GET_URL"
+      - name: Install Ruby and dependencies
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+          ruby-version: "3.3"
+      - name: Hatchet setup
+        run: bundle exec hatchet ci:setup
+      - name: Run Hatchet integration tests
+        env:
+          HATCHET_BUILDPACK_BASE: ${{ steps.fetch-upload-url.outputs.get_url }}
+        # parallel_split_test runs rspec in parallel, with concurrency equal to PARALLEL_SPLIT_TEST_PROCESSES.
+        run: bundle exec parallel_split_test spec/hatchet/
