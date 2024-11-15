@@ -5,7 +5,7 @@
 BUILD_DIR="${1}"
 
 # Detect .NET project or solution files
-if find "$BUILD_DIR" -maxdepth 1 -name "*.sln" -o -name "*.csproj" | grep -q .; then
+if find "${BUILD_DIR}" -maxdepth 1 -name "*.sln" -o -name "*.csproj" | grep -q .; then
 	echo ".NET"
 	exit 0
 else
