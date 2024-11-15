@@ -1,0 +1,47 @@
+name: Create and Upload Tarball to Heroku
+
+on:
+    push:
+      # Avoid duplicate builds on PRs.
+      branches:
+        - main
+    pull_request:
+
+jobs:
+  upload-tarball:
+    runs-on: pub-hk-ubuntu-24.04-ip
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Create tarball
+        run: |
+          tar -czf source.tar.gz ./bin
+          echo "Tarball created: source.tar.gz"
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y curl jq
+      - name: Fetch upload URL from Heroku
+        id: fetch-upload-url
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: |
+          response=$(curl -s -X POST -H "Authorization: Bearer $HEROKU_API_KEY" \
+              -H "Accept: application/vnd.heroku+json; version=3" \
+              https://api.heroku.com/sources)
+          get_url=$(echo "$response" | jq -r '.source_blob.get_url')
+          put_url=$(echo "$response" | jq -r '.source_blob.put_url')
+          echo "::set-output name=get_url::$get_url"
+          echo "::set-output name=put_url::$put_url"
+      - name: Upload tarball to Heroku
+        env:
+          PUT_URL: ${{ steps.fetch-upload-url.outputs.put_url }}
+        run: |
+          curl -s -X PUT "$PUT_URL" \
+            -H "Content-Type:" \
+            --data-binary @source.tar.gz
+      - name: Output get_url
+        env:
+          GET_URL: ${{ steps.fetch-upload-url.outputs.get_url }}
+        run: echo "Get URL is $GET_URL"
