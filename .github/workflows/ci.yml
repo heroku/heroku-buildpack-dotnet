@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  push:
+    # Avoid duplicate builds on PRs.
+    branches:
+      - main
+  pull_request:
+
+permissions:
+  contents: read
+
+env:
+  # Used by shfmt and more.
+  FORCE_COLOR: 1
+
+jobs:
+  lint:
+    runs-on: pub-hk-ubuntu-24.04-ip # TODO: change to ubuntu-24.04 once repo is public
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install Ruby and dependencies
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+          ruby-version: "3.3"
+      - name: Run ShellCheck
+        run: make lint-scripts
+      - name: Run shfmt
+        uses: docker://mvdan/shfmt:latest
+        with:
+          args: "--diff ."
+      - name: Run Rubocop
+        run: bundle exec rubocop
+
+  container-test:
+    runs-on: pub-hk-ubuntu-24.04-ip # TODO: change to ubuntu-24.04 once repo is public
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Run buildpack using default app fixture
+        run: make run
