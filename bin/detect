@@ -2,6 +2,8 @@
 # Usage: bin/detect <build-dir>
 # See: https://devcenter.heroku.com/articles/buildpack-api
 
+set -euo pipefail
+
 BUILD_DIR="${1}"
 
 # Detect .NET project or solution files
