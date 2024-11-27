@@ -1,2 +1,157 @@
 #!/usr/bin/env bash
 # Usage: bin/compile <build-dir> <cache-dir> <env-dir>
+# See: https://devcenter.heroku.com/articles/buildpack-api
+
+set -euo pipefail
+
+BUILD_DIR="${1}"
+CACHE_DIR="${2}"
+ENV_DIR="${3}"
+
+DOTNET_CNB_VERSION="0.1.7"
+
+BUILDPACK_DIR=$(cd "$(dirname "$(dirname "${BASH_SOURCE[0]}")")" && pwd)
+
+source "${BUILDPACK_DIR:?}/vendor/buildpack-stdlib_v8.sh"
+
+CNB_BUILD_DIR="/app/.heroku/cnb/dotnet"
+CNB_CACHE_DIR="${CACHE_DIR}/.heroku/cnb/dotnet"
+PROFILE_PATH="${BUILD_DIR}/.profile.d/dotnet.sh"
+
+initialize_environment() {
+	export_env "${ENV_DIR}" "." ""
+	mkdir -p "$(dirname "${PROFILE_PATH}")"
+	mkdir -p "${BUILD_DIR}/.heroku/cnb/dotnet"
+	mkdir -p "$(dirname "${CNB_BUILD_DIR}")"
+
+	# Create symlink from "/app/.heroku/cnb/dotnet" to the actual build directory.
+	# This allows the CNB to write path environment variables that work both at
+	# runtime and during the builds (particularly useful when a cached layer is
+	# restored, and the build dir has changed).
+	ln -nsf "${BUILD_DIR}/.heroku/cnb/dotnet" "${CNB_BUILD_DIR}"
+	touch "${CNB_BUILD_DIR}/buildpack_plan.toml"
+	mkdir -p "${CNB_BUILD_DIR}"/{layers,platform}
+
+	export CNB_BUILDPACK_DIR="${BUILDPACK_DIR}/cnb"
+	export CNB_TARGET_OS="linux"
+	local arch
+	arch=$(dpkg --print-architecture)
+	export CNB_TARGET_ARCH="${arch}"
+	export CNB_TARGET_DISTRO_NAME="ubuntu"
+	# shellcheck disable=SC2154 # TODO: Env var is referenced but not assigned.
+	export CNB_TARGET_DISTRO_VERSION="${STACK/heroku-/}.04"
+	export CNB_BUILD_DIR CNB_CACHE_DIR
+
+	cd "${BUILD_DIR}"
+}
+
+# We'll likely want to take a different approach to retrieve the CNB, and handle this
+# elsewhere (e.g. compiling and uploading the relevant files to an S3 bucket). For now,
+# simply download and extract the desired CNB artifact from the relevant GitHub release.
+download_and_extract_cnb() {
+	local buildpack_url="https://github.com/heroku/buildpacks-dotnet/releases/download/v${DOTNET_CNB_VERSION}/heroku_dotnet_${CNB_TARGET_OS}-${CNB_TARGET_ARCH}.cnb"
+	local temp_dir
+	temp_dir=$(mktemp -d)
+	local cnb_archive="${temp_dir}/buildpack.cnb"
+
+	curl -sSL "${buildpack_url}" -o "${cnb_archive}"
+
+	mkdir -p "${temp_dir}/oci-image"
+	tar -xf "${cnb_archive}" -C "${temp_dir}/oci-image" 2>/dev/null
+
+	local manifest_digest
+	manifest_digest=$(jq -r '.manifests[0].digest' "${temp_dir}/oci-image/index.json")
+	local manifest_file="${temp_dir}/oci-image/blobs/sha256/${manifest_digest#sha256:}"
+
+	# Prepare the target directory and extract layers from the manifest file
+	mkdir -p "${CNB_BUILDPACK_DIR}"
+	jq -r '.layers[].digest' "${manifest_file}" | while read -r layer_digest; do
+		# Extract each layer, removing the nested prefix directories (e.g. `cnb/buildpacks/heroku_dotnet/0.1.6`)
+		tar --strip-components=4 -xf "${temp_dir}/oci-image/blobs/sha256/${layer_digest#sha256:}" -C "${CNB_BUILDPACK_DIR}" 2>/dev/null
+	done
+}
+
+# Function to format CNB output, rewriting section prefixes to classic
+# buildpack output style.
+# TODO: Remove when the CNB supports printing classic output style natively.
+format_cnb_output() {
+	while IFS= read -r line; do
+		local color_code='' # Holds any detected initial color code
+		local clean_line="${line}"
+
+		# Detect and store an ANSI color code at the start of the line, if present
+		if [[ "${line}" =~ ^($'\x1b['[0-9;]*'m') ]]; then
+			color_code="${BASH_REMATCH[1]}"
+			clean_line="${line#"${color_code}"}" # Remove color code for processing
+		fi
+
+		# Set prefix and content based on line pattern
+		case "${clean_line}" in
+			"##"*)
+				prefix='----->'
+				content="${clean_line:2}"
+				;;
+			"-"*)
+				prefix='----->'
+				content="${clean_line:1}"
+				;;
+			"  -"*)
+				prefix='      '
+				content="${clean_line:3}"
+				;;
+			"!"*)
+				prefix=' !    '
+				content="${clean_line:1}"
+				;;
+			"")
+				prefix=''
+				content="${clean_line}"
+				;;
+			*)
+				prefix='   '
+				content="${clean_line}"
+				;;
+		esac
+
+		# Output formatted line with original color code, custom prefix, and content
+		echo "${color_code}${prefix}${content}"
+	done
+}
+
+# Run build with formatted output
+run_build() {
+	"${CNB_BUILDPACK_DIR}/bin/build" "${CNB_BUILD_DIR}/layers" "${CNB_BUILD_DIR}/platform" "${CNB_BUILD_DIR}/buildpack_plan.toml" | format_cnb_output
+}
+
+process_env_files() {
+	rm -f "${PROFILE_PATH}"
+	find "${CNB_BUILD_DIR}/layers" -type f \( -path "*/env/*" -o -path "*/env.launch/*" \) | while read -r file; do
+		process_env_file "${file}" >>"${PROFILE_PATH}"
+	done
+}
+
+# Remove build layers from build directory to reduce slug size
+remove_build_layers() {
+	for item in "sdk" "nuget-cache"; do
+		rm -rf "${CNB_BUILD_DIR}/layers/${item}" "${CNB_BUILD_DIR}/layers/${item}.toml"
+	done
+}
+
+process_env_file() {
+	env_file="$1"
+	var_name=$(basename "${env_file}" | cut -d '.' -f 1)
+	operation=$(basename "${env_file}" | cut -d '.' -f 2)
+	var_value=$(cat "${env_file}")
+	case "${operation}" in
+		"override") echo "export ${var_name}=\"${var_value}\"" ;;
+		"prepend") echo "export ${var_name}=\"${var_value}:\$${var_name}\"" ;;
+		"append") echo "export ${var_name}=\"\$${var_name}:${var_value}\"" ;;
+		*) ;;
+	esac
+}
+
+initialize_environment
+download_and_extract_cnb
+run_build
+remove_build_layers
+process_env_files
