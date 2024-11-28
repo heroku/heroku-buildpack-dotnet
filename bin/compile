@@ -39,7 +39,6 @@ initialize_environment() {
 	export CNB_TARGET_DISTRO_NAME="ubuntu"
 	# shellcheck disable=SC2154 # TODO: Env var is referenced but not assigned.
 	export CNB_TARGET_DISTRO_VERSION="${STACK/heroku-/}.04"
-	export CNB_BUILD_DIR
 
 	cd "${BUILD_DIR}"
 }
