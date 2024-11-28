@@ -11,6 +11,7 @@ DOTNET_CNB_VERSION="0.1.7"
 
 BUILDPACK_DIR=$(cd "$(dirname "$(dirname "${BASH_SOURCE[0]}")")" && pwd)
 
+source "${BUILDPACK_DIR:?}/lib/output.sh"
 source "${BUILDPACK_DIR:?}/vendor/buildpack-stdlib_v8.sh"
 
 CNB_BUILD_DIR="/app/.heroku/cnb/dotnet"
@@ -49,7 +50,15 @@ download_and_extract_cnb() {
 	local buildpack_url="https://github.com/heroku/buildpacks-dotnet/releases/download/v${DOTNET_CNB_VERSION}/heroku_dotnet_${CNB_TARGET_OS}-${CNB_TARGET_ARCH}.cnb"
 	local temp_dir
 	temp_dir=$(mktemp -d)
-	curl --silent --show-error --location --fail --retry 3 --retry-connrefused --connect-timeout 10 "${buildpack_url}" | tar --extract --directory "${temp_dir}" 2>/dev/null
+	if ! curl --silent --show-error --location --fail --retry 3 --retry-connrefused --connect-timeout 10 "${buildpack_url}" | tar --extract --directory "${temp_dir}" 2>/dev/null; then
+		output::error <<-EOF
+			Error: Failed to download/extract buildpack from ${buildpack_url}.
+
+			In some cases, this happens due to an unstable network connection.
+			Please try again and to see if the error resolves itself.
+		EOF
+		exit 1
+	fi
 
 	local manifest_digest
 	manifest_digest=$(jq -r '.manifests[0].digest' "${temp_dir}/index.json")
