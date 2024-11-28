@@ -50,19 +50,17 @@ download_and_extract_cnb() {
 	local buildpack_url="https://github.com/heroku/buildpacks-dotnet/releases/download/v${DOTNET_CNB_VERSION}/heroku_dotnet_${CNB_TARGET_OS}-${CNB_TARGET_ARCH}.cnb"
 	local temp_dir
 	temp_dir=$(mktemp -d)
-
-	mkdir -p "${temp_dir}/oci-image"
-	curl --silent --show-error --location --fail --retry 3 --retry-connrefused --connect-timeout 10 "${buildpack_url}" | tar --extract --directory "${temp_dir}/oci-image" 2>/dev/null;
+	curl --silent --show-error --location --fail --retry 3 --retry-connrefused --connect-timeout 10 "${buildpack_url}" | tar --extract --directory "${temp_dir}" 2>/dev/null;
 
 	local manifest_digest
-	manifest_digest=$(jq -r '.manifests[0].digest' "${temp_dir}/oci-image/index.json")
-	local manifest_file="${temp_dir}/oci-image/blobs/sha256/${manifest_digest#sha256:}"
+	manifest_digest=$(jq -r '.manifests[0].digest' "${temp_dir}/index.json")
+	local manifest_file="${temp_dir}/blobs/sha256/${manifest_digest#sha256:}"
 
 	# Prepare the target directory and extract layers from the manifest file
 	mkdir -p "${CNB_BUILDPACK_DIR}"
 	jq -r '.layers[].digest' "${manifest_file}" | while read -r layer_digest; do
 		# Extract each layer, removing the nested prefix directories (e.g. `cnb/buildpacks/heroku_dotnet/0.1.6`)
-		tar --strip-components=4 -xf "${temp_dir}/oci-image/blobs/sha256/${layer_digest#sha256:}" -C "${CNB_BUILDPACK_DIR}" 2>/dev/null
+		tar --strip-components=4 -xf "${temp_dir}/blobs/sha256/${layer_digest#sha256:}" -C "${CNB_BUILDPACK_DIR}" 2>/dev/null
 	done
 }
 
