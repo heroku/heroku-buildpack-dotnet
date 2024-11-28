@@ -15,7 +15,6 @@ BUILDPACK_DIR=$(cd "$(dirname "$(dirname "${BASH_SOURCE[0]}")")" && pwd)
 source "${BUILDPACK_DIR:?}/vendor/buildpack-stdlib_v8.sh"
 
 CNB_BUILD_DIR="/app/.heroku/cnb/dotnet"
-CNB_CACHE_DIR="${CACHE_DIR}/.heroku/cnb/dotnet"
 PROFILE_PATH="${BUILD_DIR}/.profile.d/dotnet.sh"
 
 initialize_environment() {
@@ -40,7 +39,7 @@ initialize_environment() {
 	export CNB_TARGET_DISTRO_NAME="ubuntu"
 	# shellcheck disable=SC2154 # TODO: Env var is referenced but not assigned.
 	export CNB_TARGET_DISTRO_VERSION="${STACK/heroku-/}.04"
-	export CNB_BUILD_DIR CNB_CACHE_DIR
+	export CNB_BUILD_DIR
 
 	cd "${BUILD_DIR}"
 }
