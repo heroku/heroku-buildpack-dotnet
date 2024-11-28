@@ -49,7 +49,7 @@ download_and_extract_cnb() {
 	local buildpack_url="https://github.com/heroku/buildpacks-dotnet/releases/download/v${DOTNET_CNB_VERSION}/heroku_dotnet_${CNB_TARGET_OS}-${CNB_TARGET_ARCH}.cnb"
 	local temp_dir
 	temp_dir=$(mktemp -d)
-	curl --silent --show-error --location --fail --retry 3 --retry-connrefused --connect-timeout 10 "${buildpack_url}" | tar --extract --directory "${temp_dir}" 2>/dev/null;
+	curl --silent --show-error --location --fail --retry 3 --retry-connrefused --connect-timeout 10 "${buildpack_url}" | tar --extract --directory "${temp_dir}" 2>/dev/null
 
 	local manifest_digest
 	manifest_digest=$(jq -r '.manifests[0].digest' "${temp_dir}/index.json")
