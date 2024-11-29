@@ -50,7 +50,9 @@ download_and_extract_cnb() {
 	local buildpack_url="https://github.com/heroku/buildpacks-dotnet/releases/download/v${DOTNET_CNB_VERSION}/heroku_dotnet_${CNB_TARGET_OS}-${CNB_TARGET_ARCH}.cnb"
 	local temp_dir
 	temp_dir=$(mktemp -d)
-	if ! curl --silent --show-error --location --fail --retry 3 --retry-connrefused --connect-timeout 10 "${buildpack_url}" | tar --extract --directory "${temp_dir}" 2>/dev/null; then
+	# Download the CNB file, modifying file paths to remove leading '/' during
+	# extraction of the CNB.
+	if ! curl --silent --show-error --location --fail --retry 3 --retry-connrefused --connect-timeout 10 "${buildpack_url}" | tar --transform 's|^/||' --extract --directory "${temp_dir}"; then
 		output::error <<-EOF
 			Error: Failed to download/extract buildpack from ${buildpack_url}.
 
@@ -66,9 +68,11 @@ download_and_extract_cnb() {
 
 	# Prepare the target directory and extract layers from the manifest file
 	mkdir -p "${CNB_BUILDPACK_DIR}"
+
 	jq -r --exit-status '.layers[].digest' "${manifest_file}" | while read -r layer_digest; do
-		# Extract each layer, removing the nested prefix directories (e.g. `cnb/buildpacks/heroku_dotnet/0.1.6`)
-		tar --strip-components=4 -xf "${temp_dir}/blobs/sha256/${layer_digest#sha256:}" -C "${CNB_BUILDPACK_DIR}" 2>/dev/null
+		# Extract each layer, modifying file paths to remove leading '/', and
+		# removing the nested prefix directories (e.g. `cnb/buildpacks/heroku_dotnet/0.1.6`)
+		tar --transform 's|^/||' --strip-components=4 -xf "${temp_dir}/blobs/sha256/${layer_digest#sha256:}" -C "${CNB_BUILDPACK_DIR}"
 	done
 }
 
