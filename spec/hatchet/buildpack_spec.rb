@@ -41,4 +41,36 @@ RSpec.describe 'Buildpack execution' do
       end
     end
   end
+
+  context 'when building an app with MSBUILD_VERBOSITY_LEVEL=invalid' do
+    let(:app) do
+      Hatchet::Runner.new(
+        'spec/fixtures/basic_web_8.0',
+        config: { 'MSBUILD_VERBOSITY_LEVEL' => 'invalid' },
+        allow_failure: true
+      )
+    end
+
+    it 'fails with error from CNB' do
+      app.deploy do |app|
+        expect(clean_output(app.output)).to include(<<~OUTPUT)
+          remote:  !     Invalid MSBuild verbosity level
+          remote:  !    
+          remote:  !     The `MSBUILD_VERBOSITY_LEVEL` environment variable value (`invalid`)
+          remote:  !     is invalid. Did you mean one of the following supported values?
+          remote:  !    
+          remote:  !     d
+          remote:  !     detailed
+          remote:  !     diag
+          remote:  !     diagnostic
+          remote:  !     m
+          remote:  !     minimal
+          remote:  !     n
+          remote:  !     normal
+          remote:  !     q
+          remote:  !     quiet
+        OUTPUT
+      end
+    end
+  end
 end
