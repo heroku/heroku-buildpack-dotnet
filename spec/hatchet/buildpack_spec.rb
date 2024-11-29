@@ -11,9 +11,6 @@ RSpec.describe 'Buildpack execution' do
         expect(clean_output(app.output)).to match(Regexp.new(<<~REGEX))
           remote: -----> Using buildpack: #{DEFAULT_BUILDPACK_URL}
           remote: -----> .NET app detected
-          remote: 
-          remote: -----> Heroku .NET Buildpack
-          remote: 
           remote: -----> SDK version detection
           remote:        Detected .NET file to publish: `/tmp/build_.*/foo.csproj`
           remote:        Inferring version requirement from `/tmp/build_.*/foo.csproj`

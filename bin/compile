@@ -76,7 +76,16 @@ download_and_extract_cnb() {
 # buildpack output style.
 # TODO: Remove when the CNB supports printing classic output style natively.
 format_cnb_output() {
+	local skip_next=true # Set to true to avoid leading newline from CNB
 	while IFS= read -r line; do
+		if ${skip_next}; then
+			skip_next=false
+			continue
+		fi
+		if [[ ${line} == *"## Heroku .NET Buildpack"* ]]; then
+			skip_next=true # Skip trailing whitespace
+			continue       # Drop this line
+		fi
 		local color_code='' # Holds any detected initial color code
 		local clean_line="${line}"
 
