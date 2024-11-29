@@ -115,7 +115,7 @@ format_cnb_output() {
 				;;
 			"")
 				prefix=''
-				content="${clean_line}"
+				content=''
 				;;
 			*)
 				prefix='   '
