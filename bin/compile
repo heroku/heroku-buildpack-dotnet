@@ -23,10 +23,9 @@ initialize_environment() {
 	mkdir -p "${BUILD_DIR}/.heroku/cnb/dotnet"
 	mkdir -p "$(dirname "${CNB_BUILD_DIR}")"
 
-	# Create symlink from "/app/.heroku/cnb/dotnet" to the actual build directory.
+	# Create "/app/.heroku/cnb/dotnet" symlink to the actual build directory.
 	# This allows the CNB to write path environment variables that work both at
-	# runtime and during the builds (particularly useful when a cached layer is
-	# restored, and the build dir has changed).
+	# runtime and during the build.
 	ln -nsf "${BUILD_DIR}/.heroku/cnb/dotnet" "${CNB_BUILD_DIR}"
 	touch "${CNB_BUILD_DIR}/buildpack_plan.toml"
 	mkdir -p "${CNB_BUILD_DIR}"/{layers,platform}
@@ -43,15 +42,11 @@ initialize_environment() {
 	cd "${BUILD_DIR}"
 }
 
-# We'll likely want to take a different approach to retrieve the CNB, and handle this
-# elsewhere (e.g. compiling and uploading the relevant files to an S3 bucket). For now,
-# simply download and extract the desired CNB artifact from the relevant GitHub release.
 download_and_extract_cnb() {
 	local buildpack_url="https://github.com/heroku/buildpacks-dotnet/releases/download/v${DOTNET_CNB_VERSION}/heroku_dotnet_${CNB_TARGET_OS}-${CNB_TARGET_ARCH}.cnb"
 	local temp_dir
 	temp_dir=$(mktemp -d)
-	# Download the CNB file, modifying file paths to remove leading '/' during
-	# extraction of the CNB.
+	# Download the CNB, modifying file paths to remove leading '/' during extraction
 	if ! curl --silent --show-error --location --fail --retry 3 --retry-connrefused --connect-timeout 10 "${buildpack_url}" | tar --transform 's|^/||' --extract --directory "${temp_dir}"; then
 		output::error <<-EOF
 			Error: Failed to download/extract buildpack from ${buildpack_url}.
@@ -90,13 +85,13 @@ format_cnb_output() {
 			skip_next=true # Skip trailing whitespace
 			continue       # Drop this line
 		fi
-		local color_code='' # Holds any detected initial color code
+		local color_code=''
 		local clean_line="${line}"
 
-		# Detect and store an ANSI color code at the start of the line, if present
+		# Detect and store ANSI color code at the start of the line, if present
 		if [[ "${line}" =~ ^($'\x1b['[0-9;]*'m') ]]; then
 			color_code="${BASH_REMATCH[1]}"
-			clean_line="${line#"${color_code}"}" # Remove color code for processing
+			clean_line="${line#"${color_code}"}" # Remove color code for pattern matching
 		fi
 
 		# Set prefix and content based on line pattern
@@ -126,18 +121,16 @@ format_cnb_output() {
 				content="${clean_line}"
 				;;
 		esac
-
-		# Output formatted line with original color code, custom prefix, and content
 		echo "${color_code}${prefix}${content}"
 	done
 }
 
-# Run build with formatted output
+# Run CNB bin/build with formatted output
 run_build() {
 	"${CNB_BUILDPACK_DIR}/bin/build" "${CNB_BUILD_DIR}/layers" "${CNB_BUILD_DIR}/platform" "${CNB_BUILD_DIR}/buildpack_plan.toml" | format_cnb_output
 }
 
-# Remove build layers from build directory to reduce slug size
+# Remove build layers to reduce slug size
 remove_build_layers() {
 	for item in "sdk" "nuget-cache"; do
 		rm -rf "${CNB_BUILD_DIR}/layers/${item}" "${CNB_BUILD_DIR}/layers/${item}.toml"
