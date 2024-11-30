@@ -158,8 +158,8 @@ process_env_file() {
 	var_value=$(cat "${env_file}")
 	case "${operation}" in
 		"override") echo "export ${var_name}=\"${var_value}\"" ;;
-		"prepend") echo "export ${var_name}=\"${var_value}:\$${var_name}\"" ;;
-		"append") echo "export ${var_name}=\"\$${var_name}:${var_value}\"" ;;
+		"prepend") echo "export ${var_name}=\"${var_value}\${${var_name}:+:\$${var_name}}\"" ;;
+		"append") echo "export ${var_name}=\"\${${var_name}:+\$${var_name}:}${var_value}\"" ;;
 		"default") echo "export ${var_name}=\"\${${var_name}:-${var_value}}\"" ;;
 		*) ;;
 	esac
