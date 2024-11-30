@@ -137,13 +137,6 @@ run_build() {
 	"${CNB_BUILDPACK_DIR}/bin/build" "${CNB_BUILD_DIR}/layers" "${CNB_BUILD_DIR}/platform" "${CNB_BUILD_DIR}/buildpack_plan.toml" | format_cnb_output
 }
 
-process_env_files() {
-	rm -f "${PROFILE_PATH}"
-	find "${CNB_BUILD_DIR}/layers" -type f \( -path "*/env/*" -o -path "*/env.launch/*" \) | while read -r file; do
-		process_env_file "${file}" >>"${PROFILE_PATH}"
-	done
-}
-
 # Remove build layers from build directory to reduce slug size
 remove_build_layers() {
 	for item in "sdk" "nuget-cache"; do
@@ -151,18 +144,20 @@ remove_build_layers() {
 	done
 }
 
-process_env_file() {
-	env_file="$1"
-	var_name=$(basename "${env_file}" | cut -d '.' -f 1)
-	operation=$(basename "${env_file}" | cut -d '.' -f 2)
-	var_value=$(cat "${env_file}")
-	case "${operation}" in
-		"override") echo "export ${var_name}=\"${var_value}\"" ;;
-		"prepend") echo "export ${var_name}=\"${var_value}\${${var_name}:+:\$${var_name}}\"" ;;
-		"append") echo "export ${var_name}=\"\${${var_name}:+\$${var_name}:}${var_value}\"" ;;
-		"default") echo "export ${var_name}=\"\${${var_name}:-${var_value}}\"" ;;
-		*) ;;
-	esac
+process_env_files() {
+	rm -f "${PROFILE_PATH}"
+	find "${CNB_BUILD_DIR}/layers" -type f \( -path "*/env/*" -o -path "*/env.launch/*" \) | while read -r env_file; do
+		var_name=$(basename "${env_file}" | cut -d '.' -f 1)
+		operation=$(basename "${env_file}" | cut -d '.' -f 2)
+		var_value=$(cat "${env_file}")
+		case "${operation}" in
+			"override") echo "export ${var_name}=\"${var_value}\"" ;;
+			"prepend") echo "export ${var_name}=\"${var_value}\${${var_name}:+:\$${var_name}}\"" ;;
+			"append") echo "export ${var_name}=\"\${${var_name}:+\$${var_name}:}${var_value}\"" ;;
+			"default") echo "export ${var_name}=\"\${${var_name}:-${var_value}}\"" ;;
+			*) ;;
+		esac >>"${PROFILE_PATH}"
+	done
 }
 
 initialize_environment
