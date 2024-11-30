@@ -36,9 +36,13 @@ jobs:
 
   integration-test:
     runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        stack: ["heroku-22", "heroku-24"]
     env:
       HATCHET_APP_LIMIT: 300
-      HATCHET_DEFAULT_STACK: "heroku-24"
+      HATCHET_DEFAULT_STACK: ${{ matrix.stack }}
       HATCHET_EXPENSIVE_MODE: 1
       HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       HEROKU_API_USER: ${{ secrets.HEROKU_API_USER }}
