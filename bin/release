@@ -1,3 +1,35 @@
 #!/usr/bin/env bash
 # Usage: bin/release <build-dir>
 # See: https://devcenter.heroku.com/articles/buildpack-api
+
+set -euo pipefail
+
+BUILD_DIR="${1}"
+CNB_BUILD_DIR="${BUILD_DIR}/.heroku/cnb/dotnet"
+launch_toml_file="${CNB_BUILD_DIR}/layers/launch.toml"
+
+# Check if launch.toml exists and output default_process_types in YAML
+if [[ -f "${launch_toml_file}" ]]; then
+	echo "---"
+	echo "default_process_types:"
+
+	type=""
+	command=""
+
+	while IFS= read -r line; do
+		# Extract the type from lines like `type = "web"`
+		if [[ ${line} =~ ^type[[:space:]]*=[[:space:]]*\"([^\"]+)\" ]]; then
+			type="${BASH_REMATCH[1]}"
+		fi
+
+		# Extract the command from lines like `command = ["bash", "-c", "run_command"]`
+		if [[ ${line} =~ ^command[[:space:]]*=[[:space:]]*\[\"bash\",[[:space:]]*\"-c\",[[:space:]]*\"(.*)\"[[:space:]]*\] ]]; then
+			command="${BASH_REMATCH[1]}"
+
+			# Output each process type in YAML format
+			echo "  ${type}: \"${command}\""
+			type=""
+			command=""
+		fi
+	done <"${launch_toml_file}"
+fi
