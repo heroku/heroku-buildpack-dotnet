@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/heroku/heroku-buildpack-dotnet/actions/workflows/ci.yml/badge.svg)](https://github.com/heroku/heroku-buildpack-dotnet/actions/workflows/ci.yml)
 
-This (will be) the official [Heroku buildpack](https://devcenter.heroku.com/articles/buildpacks) for .NET and ASP.NET Core applications.
+This is the official [Heroku buildpack](https://devcenter.heroku.com/articles/buildpacks) for .NET and ASP.NET Core applications.
 
 ## Getting Started
 
