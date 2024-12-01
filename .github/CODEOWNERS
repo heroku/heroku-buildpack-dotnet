@@ -1,7 +1,5 @@
 # Default to requesting pull request reviews from the Heroku Languages team
-# Uncomment when buildpack is out of pre-beta development.
-# * @heroku/languages
-* @runesoerensen
+* @heroku/languages
 
 # Except for automation that:
 # - updates binary inventories
@@ -9,3 +7,4 @@
 # - prepares releases
 # Only .NET language owners should be the requested reviewers here
 CHANGELOG.md @runesoerensen
+Gemfile.lock @runesoerensen
