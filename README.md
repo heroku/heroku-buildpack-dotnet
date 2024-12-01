@@ -46,5 +46,5 @@ heroku buildpacks:set https://github.com/heroku/heroku-buildpack-dotnet#v1 -a my
 
 For more information about using the .NET buildpack on Heroku, see these Dev Center articles:
 
-- [Heroku .NET Support reference](https://devcenter.heroku.com/articles/dotnet-support)
+- [Heroku .NET Support reference](https://devcenter.heroku.com/articles/dotnet-heroku-support-reference)
 - [Getting Started on Heroku with .NET](https://devcenter.heroku.com/articles/getting-started-with-dotnet)
