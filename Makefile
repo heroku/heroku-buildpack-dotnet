@@ -38,3 +38,6 @@ run:
 			echo -e "\nBuild successful!"; \
 		'
 	@echo
+
+publish:
+	@etc/publish.sh

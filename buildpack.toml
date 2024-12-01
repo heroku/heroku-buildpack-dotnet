@@ -4,6 +4,7 @@ name = ".NET"
 [publish.Ignore]
 files = [
   ".github/",
+  "etc/publish.sh",
   "spec/",
   ".editorconfig",
   ".gitignore",
