@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/heroku/heroku-buildpack-dotnet/actions/workflows/ci.yml/badge.svg)](https://github.com/heroku/heroku-buildpack-dotnet/actions/workflows/ci.yml)
 
-This (will be) the official [Heroku buildpack](https://devcenter.heroku.com/articles/buildpacks) for .NET and ASP.NET Core applications.
+This is the official [Heroku buildpack](https://devcenter.heroku.com/articles/buildpacks) for .NET and ASP.NET Core applications.
 
 ## Getting Started
 
@@ -10,7 +10,7 @@ See the [Getting Started on Heroku with .NET](https://devcenter.heroku.com/artic
 
 ## Application Requirements
 
-A solution file (e.g. `MySolution.sln`) or .NET project file (e.g. `*.csproj`, `*.vbproj` or `*.fsproj`) must be present in the application’s root directory. If the root directory contains both solution and project files, the solution file will be preferred for the build and publish process.
+A solution file (e.g. `MySolution.sln`) or .NET project file (e.g. `*.csproj`, `*.vbproj` or `*.fsproj`) must be present in the root (top-level) directory of your app's source code. If the root directory contains both solution and project files, the solution file will be preferred for the build and publish process.
 
 The buildpack support C#, Visual Basic and F# projects using the .NET and ASP.NET Core frameworks (version 8.0 and up).
 
@@ -46,5 +46,5 @@ heroku buildpacks:set https://github.com/heroku/heroku-buildpack-dotnet#v1 -a my
 
 For more information about using the .NET buildpack on Heroku, see these Dev Center articles:
 
-- [Heroku .NET Support reference](https://devcenter.heroku.com/articles/dotnet-support)
+- [Heroku .NET Support reference](https://devcenter.heroku.com/articles/dotnet-heroku-support-reference)
 - [Getting Started on Heroku with .NET](https://devcenter.heroku.com/articles/getting-started-with-dotnet)
