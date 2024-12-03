@@ -1,3 +1,5 @@
+![dotnet-buildpack-github-banner](https://github.com/user-attachments/assets/6f83e3de-ae3c-4e1c-b72e-60c69fc63041)
+
 # Heroku Buildpack: .NET
 
 [![CI](https://github.com/heroku/heroku-buildpack-dotnet/actions/workflows/ci.yml/badge.svg)](https://github.com/heroku/heroku-buildpack-dotnet/actions/workflows/ci.yml)
