@@ -37,20 +37,17 @@ jobs:
         with:
           token: ${{ steps.generate-token.outputs.token }}
 
-      - name: Get next release
+      - name: Get next release and update files
         id: get_next_release
         env:
           GH_TOKEN: ${{ steps.generate-token.outputs.token }}
         run: |
           # Get the currently pinned version
-          echo "baz"
           previous_version=$(awk -F'"' '/DOTNET_CNB_VERSION=/ {print $2}' bin/compile)
 
-          echo "foo"
           # Get all releases sorted by creation date
           releases=$(gh release list --repo heroku/buildpacks-dotnet --limit 100 --json tagName --jq '.[].tagName' | tac)
           next_release=""
-          echo "bar"
 
           # Find the next release after the pinned version
           found_previous=false
