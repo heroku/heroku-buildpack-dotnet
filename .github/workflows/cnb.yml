@@ -1,7 +1,11 @@
 name: Update DOTNET_CNB_VERSION
 
 on:
-  workflow_dispatch:
+  push:
+    # Avoid duplicate builds on PRs.
+    branches:
+      - main
+  pull_request:
 
 permissions:
   actions: write
