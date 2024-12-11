@@ -73,8 +73,10 @@ jobs:
 
       - name: Gather changelog for the next release
         id: gather_changelog
+        env:
+          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
         run: |
-          RELEASE_NOTES=$(gh release view --repo heroku/buildpacks-dotnet --tag "v${{ env.next_release }}" --json body --jq .body)
+          RELEASE_NOTES=$(gh release view --repo heroku/buildpacks-dotnet "v${{ env.next_release }}" --json body --jq .body)
           echo "changelog=$RELEASE_NOTES" >> $GITHUB_ENV
 
       - name: Update bin/compile and CHANGELOG.md
