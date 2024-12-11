@@ -1,0 +1,99 @@
+name: Update DOTNET_CNB_VERSION
+
+on:
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: write
+  pull-requests: write
+
+jobs:
+  update-cnb:
+    name: Update DOTNET CNB Version
+    runs-on: pub-hk-ubuntu-24.04-ip
+
+    steps:
+      - uses: actions/create-github-app-token@v1
+        id: generate-token
+        with:
+          app-id: ${{ vars.LINGUIST_GH_APP_ID }}
+          private-key: ${{ secrets.LINGUIST_GH_PRIVATE_KEY }}
+
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ steps.generate-token.outputs.token }}
+
+      - name: Get next release
+        id: get_next_release
+        run: |
+          # Get the currently pinned version
+          previous_version=$(grep -oP 'DOTNET_CNB_VERSION="\\K[^"]+' bin/compile)
+
+          # Get all releases sorted by creation date
+          releases=$(gh release list --repo heroku/buildpacks-dotnet --limit 100 --json tagName --jq '.[].tagName' | tac)
+          next_release=""
+
+          # Find the next release after the pinned version
+          found_previous=false
+          for release in $releases; do
+            if [ "$found_previous" = "true" ]; then
+              next_release=${release#v}
+              break
+            fi
+            if [ "$release" = "v$previous_version" ]; then
+              found_previous=true
+            fi
+          done
+
+          # Handle cases where no next release is found
+          if [ -z "$next_release" ]; then
+            echo "No newer release found. Exiting."
+            exit 0
+          fi
+
+          echo "next_release=$next_release" >> $GITHUB_ENV
+
+      - name: Gather changelog for the next release
+        id: gather_changelog
+        run: |
+          RELEASE_NOTES=$(gh release view --repo heroku/buildpacks-dotnet --tag "v${{ env.next_release }}" --json body --jq .body)
+          echo "changelog=$RELEASE_NOTES" >> $GITHUB_ENV
+
+      - name: Update bin/compile and CHANGELOG.md
+        run: |
+          # Update bin/compile
+          sed -i "s/DOTNET_CNB_VERSION=\".*\"/DOTNET_CNB_VERSION=\"${{ env.next_release }}\"/" bin/compile
+
+          # Update CHANGELOG.md
+          if ! grep -q "## Unreleased" CHANGELOG.md; then
+            echo -e "## Unreleased\n\n$(cat CHANGELOG.md)" > CHANGELOG.md
+          fi
+          RELEASE_NOTES=$(echo "${{ env.changelog }}" | awk '/^### / {p=1} p {print}' | sed '/^## /,$d')
+          echo -e "$RELEASE_NOTES\n$(cat CHANGELOG.md)" > CHANGELOG.md
+
+      - name: Create Pull Request
+        id: create_pr
+        uses: peter-evans/create-pull-request@v7.0.5
+        with:
+          token: ${{ steps.generate-token.outputs.token }}
+          title: "Update heroku/buildpacks-dotnet to v${{ env.next_release }}"
+          commit-message: "Update DOTNET_CNB_VERSION to ${{ env.next_release }}\n\nRelease notes:\n${{ env.changelog }}"
+          committer: ${{ vars.LINGUIST_GH_APP_USERNAME }} <${{ vars.LINGUIST_GH_APP_EMAIL }}>
+          author: ${{ vars.LINGUIST_GH_APP_USERNAME }} <${{ vars.LINGUIST_GH_APP_EMAIL }}>
+          branch: update-dotnet-cnb-${{ env.next_release }}
+          body: |
+            This PR updates the DOTNET_CNB_VERSION to the next release: `${{ env.next_release }}`.
+
+            Release notes:
+
+            ${{ env.changelog }}
+
+            For more details, see the [release](https://github.com/heroku/buildpacks-dotnet/releases/tag/v${{ env.next_release }}).
+
+      - name: Configure PR
+        if: steps.create_pr.outputs.pull-request-operation == 'created'
+        env:
+          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
+        run: gh pr merge --squash --auto "${{ steps.create_pr.outputs.pull-request-number }}"
