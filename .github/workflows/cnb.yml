@@ -42,9 +42,11 @@ jobs:
           # Get the currently pinned version
           previous_version=$(grep -oP 'DOTNET_CNB_VERSION="\\K[^"]+' bin/compile)
 
+          echo "foo"
           # Get all releases sorted by creation date
           releases=$(gh release list --repo heroku/buildpacks-dotnet --limit 100 --json tagName --jq '.[].tagName' | tac)
           next_release=""
+          echo "bar"
 
           # Find the next release after the pinned version
           found_previous=false
