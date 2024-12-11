@@ -70,6 +70,7 @@ jobs:
 
           # Fetch release notes
           RELEASE_NOTES=$(gh release view "v$next_release" --repo heroku/buildpacks-dotnet --json body --jq .body)
+          SAFE_NOTES=$(echo "$RELEASE_NOTES" | awk '/^### / {p=1} p {print}' | sed '/^## /,$d')
 
           # Update bin/compile
           sed -i "s/DOTNET_CNB_VERSION=\".*\"/DOTNET_CNB_VERSION=\"$next_release\"/" bin/compile
@@ -78,7 +79,7 @@ jobs:
           if ! grep -q "## \[Unreleased\]" CHANGELOG.md; then
             echo -e "## [Unreleased]\n\n$(cat CHANGELOG.md)" > CHANGELOG.md
           fi
-          awk '/^## \[Unreleased\]/ {print; print ""; print "$(echo "$RELEASE_NOTES" | awk '/^### / {p=1} p {print}' | sed '/^## /,$d')"; next} 1' CHANGELOG.md > temp && mv temp CHANGELOG.md
+          awk -v notes="$SAFE_NOTES" '/^## \[Unreleased\]/ {print; print ""; print notes; next} 1' CHANGELOG.md > temp && mv temp CHANGELOG.md
 
       - name: Create Pull Request
         id: create_pr
