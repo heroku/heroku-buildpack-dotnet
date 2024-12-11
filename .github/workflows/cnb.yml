@@ -84,6 +84,7 @@ jobs:
         uses: peter-evans/create-pull-request@v7.0.5
         with:
           token: ${{ steps.generate-token.outputs.token }}
+          reviewers: runesoerensen
           title: "Update heroku/buildpacks-dotnet to v${{ env.next_release }}"
           commit-message: "Update DOTNET_CNB_VERSION version to ${{ env.next_release }}"
           committer: ${{ vars.LINGUIST_GH_APP_USERNAME }} <${{ vars.LINGUIST_GH_APP_EMAIL }}>
