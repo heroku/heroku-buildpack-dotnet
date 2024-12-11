@@ -41,7 +41,7 @@ jobs:
         run: |
           # Get the currently pinned version
           echo "baz"
-          previous_version=$(grep -oP 'DOTNET_CNB_VERSION="\\K[^"]+' bin/compile)
+          previous_version=$(awk -F'"' '/DOTNET_CNB_VERSION=/ {print $2}' bin/compile)
 
           echo "foo"
           # Get all releases sorted by creation date
