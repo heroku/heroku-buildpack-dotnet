@@ -94,9 +94,3 @@ jobs:
             This PR updates the DOTNET_CNB_VERSION to the next release: `${{ env.next_release }}`.
 
             For more details, see the [release](https://github.com/heroku/buildpacks-dotnet/releases/tag/v${{ env.next_release }}).
-
-      - name: Configure PR
-        if: steps.create_pr.outputs.pull-request-operation == 'created'
-        env:
-          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
-        run: gh pr merge --squash --auto "${{ steps.create_pr.outputs.pull-request-number }}"
