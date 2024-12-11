@@ -4,8 +4,7 @@ on:
   push:
     # Avoid duplicate builds on PRs.
     branches:
-      - main
-  pull_request:
+      - '**'
   workflow_dispatch:
 
 defaults:
