@@ -40,6 +40,7 @@ jobs:
         id: get_next_release
         run: |
           # Get the currently pinned version
+          echo "baz"
           previous_version=$(grep -oP 'DOTNET_CNB_VERSION="\\K[^"]+' bin/compile)
 
           echo "foo"
