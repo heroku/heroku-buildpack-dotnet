@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Changed
+
+- The buildpack will now retry SDK downloads up to 5 times ([#160](https://github.com/heroku/buildpacks-dotnet/pull/160))
+
 
 ## [v3] - 2024-12-04
 
