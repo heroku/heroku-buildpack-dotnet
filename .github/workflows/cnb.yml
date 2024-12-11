@@ -71,42 +71,30 @@ jobs:
 
           echo "next_release=$next_release" >> $GITHUB_ENV
 
-      - name: Gather changelog for the next release
-        id: gather_changelog
-        env:
-          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
-        run: |
-          RELEASE_NOTES=$(gh release view --repo heroku/buildpacks-dotnet "v${{ env.next_release }}" --json body --jq .body)
-          echo "changelog=$RELEASE_NOTES" >> $GITHUB_ENV
+          # Fetch release notes
+          RELEASE_NOTES=$(gh release view "v$next_release" --repo heroku/buildpacks-dotnet --json body --jq .body)
 
-      - name: Update bin/compile and CHANGELOG.md
-        run: |
           # Update bin/compile
-          sed -i "s/DOTNET_CNB_VERSION=\".*\"/DOTNET_CNB_VERSION=\"${{ env.next_release }}\"/" bin/compile
+          sed -i "s/DOTNET_CNB_VERSION=\".*\"/DOTNET_CNB_VERSION=\"$next_release\"/" bin/compile
 
           # Update CHANGELOG.md
           if ! grep -q "## Unreleased" CHANGELOG.md; then
             echo -e "## Unreleased\n\n$(cat CHANGELOG.md)" > CHANGELOG.md
           fi
-          RELEASE_NOTES=$(echo "${{ env.changelog }}" | awk '/^### / {p=1} p {print}' | sed '/^## /,$d')
-          echo -e "$RELEASE_NOTES\n$(cat CHANGELOG.md)" > CHANGELOG.md
+          echo "$RELEASE_NOTES" | awk '/^### / {p=1} p {print}' | sed '/^## /,$d' | cat - CHANGELOG.md > temp && mv temp CHANGELOG.md
 
       - name: Create Pull Request
         id: create_pr
         uses: peter-evans/create-pull-request@v7.0.5
         with:
           token: ${{ steps.generate-token.outputs.token }}
-          title: "Update heroku/buildpacks-dotnet to v${{ env.next_release }}"
-          commit-message: "Update DOTNET_CNB_VERSION to ${{ env.next_release }}\n\nRelease notes:\n${{ env.changelog }}"
+          title: "Update heroku/buildpacks-dotnet to ${{ env.next_release }}"
+          commit-message: "Update DOTNET_CNB_VERSION to ${{ env.next_release }}"
           committer: ${{ vars.LINGUIST_GH_APP_USERNAME }} <${{ vars.LINGUIST_GH_APP_EMAIL }}>
           author: ${{ vars.LINGUIST_GH_APP_USERNAME }} <${{ vars.LINGUIST_GH_APP_EMAIL }}>
           branch: update-dotnet-cnb-${{ env.next_release }}
           body: |
             This PR updates the DOTNET_CNB_VERSION to the next release: `${{ env.next_release }}`.
-
-            Release notes:
-
-            ${{ env.changelog }}
 
             For more details, see the [release](https://github.com/heroku/buildpacks-dotnet/releases/tag/v${{ env.next_release }}).
 
