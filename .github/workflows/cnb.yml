@@ -86,12 +86,12 @@ jobs:
         uses: peter-evans/create-pull-request@v7.0.5
         with:
           token: ${{ steps.generate-token.outputs.token }}
-          title: "Update heroku/buildpacks-dotnet to ${{ env.next_release }}"
-          commit-message: "Update DOTNET_CNB_VERSION to ${{ env.next_release }}"
+          title: "Update heroku/buildpacks-dotnet to v${{ env.next_release }}"
+          commit-message: "Update DOTNET_CNB_VERSION version to ${{ env.next_release }}"
           committer: ${{ vars.LINGUIST_GH_APP_USERNAME }} <${{ vars.LINGUIST_GH_APP_EMAIL }}>
           author: ${{ vars.LINGUIST_GH_APP_USERNAME }} <${{ vars.LINGUIST_GH_APP_EMAIL }}>
           branch: update-dotnet-cnb-${{ env.next_release }}
           body: |
-            This PR updates the DOTNET_CNB_VERSION to the next release: `${{ env.next_release }}`.
+            This PR updates the pinned `DOTNET_CNB_VERSION` to [${{ env.next_release }}](https://github.com/heroku/buildpacks-dotnet/releases/tag/v${{ env.next_release }}).
 
             For more details, see the [release](https://github.com/heroku/buildpacks-dotnet/releases/tag/v${{ env.next_release }}).
