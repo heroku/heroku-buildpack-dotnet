@@ -75,10 +75,10 @@ jobs:
           sed -i "s/DOTNET_CNB_VERSION=\".*\"/DOTNET_CNB_VERSION=\"$next_release\"/" bin/compile
 
           # Update CHANGELOG.md
-          if ! grep -q "## Unreleased" CHANGELOG.md; then
-            echo -e "## Unreleased\n\n$(cat CHANGELOG.md)" > CHANGELOG.md
+          if ! grep -q "## \[Unreleased\]" CHANGELOG.md; then
+            echo -e "## [Unreleased]\n\n$(cat CHANGELOG.md)" > CHANGELOG.md
           fi
-          echo "$RELEASE_NOTES" | awk '/^### / {p=1} p {print}' | sed '/^## /,$d' | cat - CHANGELOG.md > temp && mv temp CHANGELOG.md
+          awk '/^## \[Unreleased\]/ {print; print ""; print "$(echo "$RELEASE_NOTES" | awk '/^### / {p=1} p {print}' | sed '/^## /,$d')"; next} 1' CHANGELOG.md > temp && mv temp CHANGELOG.md
 
       - name: Create Pull Request
         id: create_pr
