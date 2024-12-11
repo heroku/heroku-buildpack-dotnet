@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Added
+
+- Support for .NET SDK versions: 9.0.101 (linux-amd64), 9.0.101 (linux-arm64).
+
 ### Changed
 
 - The buildpack will now retry SDK downloads up to 5 times ([#160](https://github.com/heroku/buildpacks-dotnet/pull/160))
