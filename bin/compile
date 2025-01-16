@@ -127,7 +127,7 @@ format_cnb_output() {
 
 # Run CNB bin/build with formatted output
 run_build() {
-	"${CNB_BUILDPACK_DIR}/bin/build" "${CNB_BUILD_DIR}/layers" "${CNB_BUILD_DIR}/platform" "${CNB_BUILD_DIR}/buildpack_plan.toml" 2>&1 | format_cnb_output
+	"${CNB_BUILDPACK_DIR}/bin/build" "${CNB_BUILD_DIR}/layers" "${CNB_BUILD_DIR}/platform" "${CNB_BUILD_DIR}/buildpack_plan.toml" |& format_cnb_output
 }
 
 # Remove build layers to reduce slug size
