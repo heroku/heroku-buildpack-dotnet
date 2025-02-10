@@ -30,9 +30,11 @@ RSpec.describe 'Buildpack execution' do
           remote:            foo -> /tmp/build_.*/bin/publish/
           remote: 
           remote:        Done .*
-          remote: -----> Setting launch table
+          remote: -----> Process types
           remote:        Detecting process types from published artifacts
-          remote:        Added `foo`: .*
+          remote:        Found `foo`: .*
+          remote:        No Procfile detected
+          remote:        Registering detected process types as launch processes
           remote: -----> Done .*
           remote: -----> Discovering process types
           remote:        Procfile declares types     -> \\(none\\)
