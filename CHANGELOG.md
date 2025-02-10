@@ -4,15 +4,11 @@
 
 ### Changed
 
-- Detected process types are now only registered as launch processes when no Procfile is present. [#185](https://github.com/heroku/buildpacks-dotnet/pull/185)
-
-### Added
-
-- Enabled `libcnb`'s `trace` feature. [#184](https://github.com/heroku/buildpacks-dotnet/pull/184)
+- Detected process types are now only registered as default processes when no Procfile is present. [#39](https://github.com/heroku/heroku-buildpack-dotnet/pull/39)
 
 ### Changed
 
-- The .NET SDK inventory was updated with new download URLs for version 9.0 release artifacts. [#193](https://github.com/heroku/buildpacks-dotnet/pull/193)
+- The .NET SDK inventory was updated with new download URLs for version 9.0 release artifacts. [#39](https://github.com/heroku/heroku-buildpack-dotnet/pull/39)
 
 
 ## [v4] - 2025-01-16
