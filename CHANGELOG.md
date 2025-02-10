@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+
+## [v5] - 2025-02-10
+
 ### Changed
 
 - Detected process types are now only registered as default processes when no Procfile is present. [#39](https://github.com/heroku/heroku-buildpack-dotnet/pull/39)
@@ -34,7 +37,8 @@
 
 - Initial implementation.
 
-[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v4...main
+[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v5...main
+[v5]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v4...v5
 [v4]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v3...v4
 [v3]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v2...v3
 [v2]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v1...v2
