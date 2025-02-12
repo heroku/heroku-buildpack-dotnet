@@ -15,8 +15,8 @@
 
 ### Changed
 
-- Detected process types are now only registered as default processes when no Procfile is present. [#39](https://github.com/heroku/heroku-buildpack-dotnet/pull/39)
-- The .NET SDK inventory was updated with new download URLs for version 9.0 release artifacts. [#39](https://github.com/heroku/heroku-buildpack-dotnet/pull/39)
+- Detected process types are now only registered as default processes when no Procfile is present. ([#39](https://github.com/heroku/heroku-buildpack-dotnet/pull/39))
+- The .NET SDK inventory was updated with new download URLs for version 9.0 release artifacts. ([#39](https://github.com/heroku/heroku-buildpack-dotnet/pull/39))
 
 ## [v4] - 2025-01-16
 
