@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Added
+
+- The buildpack will now restore .NET tools when a tool manifest file is detected. ([#194](https://github.com/heroku/buildpacks-dotnet/pull/194))
+
 
 ## [v6] - 2025-02-12
 
