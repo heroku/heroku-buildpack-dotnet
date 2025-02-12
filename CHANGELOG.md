@@ -2,6 +2,14 @@
 
 ## [Unreleased]
 
+### Changed
+
+- The .NET SDK inventory was updated with new download URLs for version 9.0 release artifacts. [#197](https://github.com/heroku/buildpacks-dotnet/pull/197)
+
+### Added
+
+- Support for .NET SDK versions: 8.0.113 (linux-amd64), 8.0.113 (linux-arm64), 8.0.309 (linux-amd64), 8.0.309 (linux-arm64), 8.0.406 (linux-amd64), 8.0.406 (linux-arm64), 9.0.103 (linux-amd64), 9.0.103 (linux-arm64), 9.0.200 (linux-amd64), 9.0.200 (linux-arm64). [#197](https://github.com/heroku/buildpacks-dotnet/pull/197)
+
 
 ## [v5] - 2025-02-10
 
