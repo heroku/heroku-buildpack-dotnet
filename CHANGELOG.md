@@ -2,16 +2,21 @@
 
 ## [Unreleased]
 
+### Changed
+
+- The .NET SDK inventory was updated with new download URLs for version 9.0 release artifacts. ([#41](https://github.com/heroku/heroku-buildpack-dotnet/pull/41))
+
+### Added
+
+- Support for .NET SDK versions: 8.0.113 (linux-amd64), 8.0.113 (linux-arm64), 8.0.309 (linux-amd64), 8.0.309 (linux-arm64), 8.0.406 (linux-amd64), 8.0.406 (linux-arm64), 9.0.103 (linux-amd64), 9.0.103 (linux-arm64), 9.0.200 (linux-amd64), 9.0.200 (linux-arm64). ([#41](https://github.com/heroku/heroku-buildpack-dotnet/pull/41))
+
 
 ## [v5] - 2025-02-10
 
 ### Changed
 
-- Detected process types are now only registered as default processes when no Procfile is present. [#39](https://github.com/heroku/heroku-buildpack-dotnet/pull/39)
-
-### Changed
-
-- The .NET SDK inventory was updated with new download URLs for version 9.0 release artifacts. [#39](https://github.com/heroku/heroku-buildpack-dotnet/pull/39)
+- Detected process types are now only registered as default processes when no Procfile is present. ([#39](https://github.com/heroku/heroku-buildpack-dotnet/pull/39))
+- The .NET SDK inventory was updated with new download URLs for version 9.0 release artifacts. ([#39](https://github.com/heroku/heroku-buildpack-dotnet/pull/39))
 
 ## [v4] - 2025-01-16
 
