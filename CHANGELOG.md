@@ -2,13 +2,11 @@
 
 ## [Unreleased]
 
-
 ## [v7] - 2025-02-12
 
 ### Added
 
 - The buildpack will now restore .NET tools when a tool manifest file is detected. ([#43](https://github.com/heroku/heroku-buildpack-dotnet/pull/43))
-
 
 ## [v6] - 2025-02-12
 
@@ -19,7 +17,6 @@
 ### Added
 
 - Support for .NET SDK versions: 8.0.113 (linux-amd64), 8.0.113 (linux-arm64), 8.0.309 (linux-amd64), 8.0.309 (linux-arm64), 8.0.406 (linux-amd64), 8.0.406 (linux-arm64), 9.0.103 (linux-amd64), 9.0.103 (linux-arm64), 9.0.200 (linux-amd64), 9.0.200 (linux-arm64). ([#41](https://github.com/heroku/heroku-buildpack-dotnet/pull/41))
-
 
 ## [v5] - 2025-02-10
 
