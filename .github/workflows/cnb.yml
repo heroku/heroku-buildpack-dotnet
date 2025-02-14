@@ -74,9 +74,6 @@ jobs:
           sed -i "s/DOTNET_CNB_VERSION=\".*\"/DOTNET_CNB_VERSION=\"$next_release\"/" bin/compile
 
           # Update CHANGELOG.md
-          if ! grep -q "## \[Unreleased\]" CHANGELOG.md; then
-            echo -e "## [Unreleased]\n\n$(cat CHANGELOG.md)" > CHANGELOG.md
-          fi
           awk -v notes="$SAFE_NOTES" '/^## \[Unreleased\]/ {print; print ""; print notes; next} 1' CHANGELOG.md > temp && mv temp CHANGELOG.md
 
       - name: Create Pull Request
