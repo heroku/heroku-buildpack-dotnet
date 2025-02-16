@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Usage: bin/test <build-dir> <env-dir>
+# See: https://devcenter.heroku.com/articles/testpack-api#bin-test
+
+set -euo pipefail
+
+BUILD_DIR=${1:-}
+
+cd "$BUILD_DIR"
+dotnet test
