@@ -14,5 +14,16 @@ dotnet_test_command=(
 	dotnet
 	test
 )
+
+if [[ -v BUILD_CONFIGURATION ]]; then
+	dotnet_test_command+=(--configuration)
+	dotnet_test_command+=("${BUILD_CONFIGURATION}")
+fi
+
+if [[ -v MSBUILD_VERBOSITY_LEVEL ]]; then
+	dotnet_test_command+=(--verbosity)
+	dotnet_test_command+=("${MSBUILD_VERBOSITY_LEVEL}")
+fi
+
 echo "Running '${dotnet_test_command[*]}'" | output::indent
 "${dotnet_test_command[@]}" |& output::indent
