@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+# Usage: bin/test <build-dir> <env-dir>
+# See: https://devcenter.heroku.com/articles/testpack-api#bin-test
+
+set -euo pipefail
+
+BUILD_DIR=${1:-}
+
+BUILDPACK_DIR=$(cd "$(dirname "$(dirname "${BASH_SOURCE[0]}")")" && pwd)
+source "${BUILDPACK_DIR:?}/lib/output.sh"
+
+cd "${BUILD_DIR}"
+dotnet_test_command=(
+	dotnet
+	test
+)
+
+if [[ -v BUILD_CONFIGURATION ]]; then
+	dotnet_test_command+=(--configuration)
+	dotnet_test_command+=("${BUILD_CONFIGURATION}")
+fi
+
+if [[ -v MSBUILD_VERBOSITY_LEVEL ]]; then
+	dotnet_test_command+=(--verbosity)
+	dotnet_test_command+=("${MSBUILD_VERBOSITY_LEVEL}")
+fi
+
+echo "Running test command \`${dotnet_test_command[*]}\`" | output::indent
+"${dotnet_test_command[@]}" |& output::indent

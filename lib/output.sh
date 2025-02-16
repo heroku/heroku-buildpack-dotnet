@@ -7,6 +7,16 @@ set -euo pipefail
 ANSI_RED='\033[1;31m'
 ANSI_RESET='\033[0m'
 
+# Indent passed stdout. Typically used to indent command output within a step.
+#
+# Usage:
+# ```
+# dotnet test ... | output::indent
+# ```
+function output::indent() {
+	sed --unbuffered "s/^/       /"
+}
+
 # Output a styled multi-line error message to stderr.
 #
 # Usage:
