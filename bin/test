@@ -10,4 +10,9 @@ BUILDPACK_DIR=$(cd "$(dirname "$(dirname "${BASH_SOURCE[0]}")")" && pwd)
 source "${BUILDPACK_DIR:?}/lib/output.sh"
 
 cd "${BUILD_DIR}"
-dotnet test |& output::indent
+dotnet_test_command=(
+	dotnet
+	test
+)
+echo "Running '${dotnet_test_command[*]}'" | output::indent
+"${dotnet_test_command[@]}" |& output::indent
