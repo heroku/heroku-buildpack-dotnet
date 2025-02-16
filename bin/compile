@@ -12,4 +12,4 @@ setup_environment "$1" "$3"
 download_and_extract_cnb
 run_build
 remove_build_layers
-process_env_files
+process_env_files "launch"

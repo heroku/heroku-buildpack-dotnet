@@ -132,8 +132,9 @@ remove_build_layers() {
 }
 
 process_env_files() {
+	local scope="${1}"
 	rm -f "${PROFILE_PATH}"
-	find "${CNB_BUILD_DIR}/layers" -type f \( -path "*/env/*" -o -path "*/env.launch/*" \) | while read -r env_file; do
+	find "${CNB_BUILD_DIR}/layers" -type f \( -path "*/env/*" -o -path "*/env.${scope}/*" \) | while read -r env_file; do
 		var_name=$(basename "${env_file}" | cut -d '.' -f 1)
 		operation=$(basename "${env_file}" | cut -d '.' -f 2)
 		var_value=$(cat "${env_file}")
