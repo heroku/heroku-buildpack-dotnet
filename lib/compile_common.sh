@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-source "${BUILDPACK_DIR}/lib/output.sh"
+source "${BUILDPACK_DIR:?}/lib/output.sh"
 source "${BUILDPACK_DIR}/vendor/buildpack-stdlib_v8.sh"
 
 DOTNET_CNB_VERSION="0.2.2"
