@@ -25,5 +25,5 @@ if [[ -v MSBUILD_VERBOSITY_LEVEL ]]; then
 	dotnet_test_command+=("${MSBUILD_VERBOSITY_LEVEL}")
 fi
 
-echo "Running \`${dotnet_test_command[*]}\`" | output::indent
+echo "Running test command \`${dotnet_test_command[*]}\`" | output::indent
 "${dotnet_test_command[@]}" |& output::indent
