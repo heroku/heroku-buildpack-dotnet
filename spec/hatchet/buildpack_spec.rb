@@ -40,6 +40,8 @@ RSpec.describe 'Buildpack execution' do
           remote:        Procfile declares types     -> \\(none\\)
           remote:        Default types for buildpack -> foo
         REGEX
+
+        expect(app.run('bin/test-runtime.sh')).to match('All dynamically linked libraries were found.')
       end
     end
   end
