@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+### Changed
+
+- The `sdk` element in detected `global.json` files is no longer required. The SDK version to install is now inferred from the solution/project files when `global.json` doesn't define SDK configuration. ([#49](https://github.com/heroku/heroku-buildpack-dotnet/pull/49))
+- The buildpack will now set `--artifacts-path` to a temporary directory during `dotnet publish`. This change reduces the number of unused, duplicated and/or intermediate files in the app directory. Published output for each project is still written to the same location relative to the the project directory (`bin/publish`, as configured using the `PublishDir` property). ([#49](https://github.com/heroku/heroku-buildpack-dotnet/pull/49))
+
 ## [v7] - 2025-02-12
 
 ### Added

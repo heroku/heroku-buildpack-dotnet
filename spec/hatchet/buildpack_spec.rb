@@ -22,11 +22,11 @@ RSpec.describe 'Buildpack execution' do
           remote:        Installing SDK
           remote: -----> Publish solution
           remote:        Using `Release` build configuration
-          remote:        Running `dotnet publish /tmp/build_.*/foo.csproj --runtime linux-x64 "-p:PublishDir=bin/publish"`
+          remote:        Running `dotnet publish /tmp/build_.*/foo.csproj --runtime linux-x64 "-p:PublishDir=bin/publish" --artifacts-path /tmp/build_artifacts`
           remote: 
           remote:            Determining projects to restore...
           remote:            Restored /tmp/build_.*/foo.csproj .*
-          remote:            foo -> /tmp/build_.*/bin/Release/net8.0/linux-x64/foo.dll
+          remote:            foo -> /tmp/build_artifacts/bin/foo/release_linux-x64/foo.dll
           remote:            foo -> /tmp/build_.*/bin/publish/
           remote: 
           remote:        Done .*
