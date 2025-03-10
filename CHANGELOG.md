@@ -4,9 +4,9 @@
 
 ### Changed
 
-- The .NET SDK inventory was updated with new download URLs for version 9.0 release artifacts. ([#203](https://github.com/heroku/buildpacks-dotnet/pull/203))
-- The buildpack will now skip NuGet package XML doc extraction when running `dotnet publish`. ([#212](https://github.com/heroku/buildpacks-dotnet/pull/212))
-- The build configuration is no longer written to the log before the `dotnet publish` command (which still includes the build configuration value when specified). ([#213](https://github.com/heroku/buildpacks-dotnet/pull/213))
+- The .NET SDK inventory was updated with new download URLs for version 9.0 release artifacts. ([#52](https://github.com/heroku/heroku-buildpack-dotnet/pull/52))
+- The buildpack will now skip NuGet package XML doc extraction when running `dotnet publish`. ([#52](https://github.com/heroku/heroku-buildpack-dotnet/pull/52))
+- The build configuration is no longer written to the log before the `dotnet publish` command (which still includes the build configuration value when specified). ([#52](https://github.com/heroku/heroku-buildpack-dotnet/pull/52))
 
 
 ## [v8] - 2025-03-10
