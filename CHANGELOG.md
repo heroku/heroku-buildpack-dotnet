@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+
+## [v9] - 2025-03-10
+
 ### Changed
 
 - The .NET SDK inventory was updated with new download URLs for version 9.0 release artifacts. ([#52](https://github.com/heroku/heroku-buildpack-dotnet/pull/52))
@@ -62,7 +65,8 @@
 
 - Initial implementation.
 
-[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v8...main
+[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v9...main
+[v9]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v8...v9
 [v8]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v7...v8
 [v7]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v6...v7
 [v6]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v5...v6
