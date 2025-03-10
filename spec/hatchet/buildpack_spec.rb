@@ -21,7 +21,6 @@ RSpec.describe 'Buildpack execution' do
           remote:        Verifying SDK checksum
           remote:        Installing SDK
           remote: -----> Publish solution
-          remote:        Using `Release` build configuration
           remote:        Running `dotnet publish /tmp/build_.*/foo.csproj --runtime linux-x64 "-p:PublishDir=bin/publish" --artifacts-path /tmp/build_artifacts`
           remote: 
           remote:            Determining projects to restore...
