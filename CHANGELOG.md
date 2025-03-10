@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+
+## [v8] - 2025-03-10
+
 ### Changed
 
 - The `sdk` element in detected `global.json` files is no longer required. The SDK version to install is now inferred from the solution/project files when `global.json` doesn't define SDK configuration. ([#49](https://github.com/heroku/heroku-buildpack-dotnet/pull/49))
@@ -54,7 +57,8 @@
 
 - Initial implementation.
 
-[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v7...main
+[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v8...main
+[v8]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v7...v8
 [v7]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v6...v7
 [v6]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v5...v6
 [v5]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v4...v5
