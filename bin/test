@@ -22,8 +22,16 @@ if [[ -n "${launch_processes[${test_process_type}]:-}" ]]; then
 	cd "${BUILD_DIR}"
 	eval "${launch_processes[${test_process_type}]}" |& output::indent
 else
-	# When the CNB supports the test execution environment, a `test` process will
-	# always be added during compilation, so users should never see this.
-	echo "Error: No '${test_process_type}' process found in launch.toml." >&2
+	# A `test` process type should always be added during compilation, so
+	# (official GitHub/buildpack registry releases) should never produce
+	# this error. We may also want to add report/track errors like these.
+	output::error <<-EOF
+		Error: No '${test_process_type}' process found in launch.toml.
+
+		This error is most likely caused by an internal buildpack bug.
+
+		If you see this error, please file an issue here:
+		https://github.com/heroku/heroku-buildpack-dotnet/issues/new
+	EOF
 	exit 1
 fi
