@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+
+## [v11] - 2025-03-13
+
 ### Added
 
 - Support for Heroku CI. ([#58](https://github.com/heroku/heroku-buildpack-dotnet/pull/58))
@@ -74,7 +77,8 @@
 
 - Initial implementation.
 
-[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v10...main
+[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v11...main
+[v11]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v10...v11
 [v10]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v9...v10
 [v9]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v8...v9
 [v8]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v7...v8
