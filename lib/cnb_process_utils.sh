@@ -8,6 +8,7 @@ parse_launch_processes() {
 
 	local type=""
 	local command=""
+	local line
 
 	while IFS= read -r line; do
 		# Extract the type from lines like `type = "web"`
