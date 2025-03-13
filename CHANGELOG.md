@@ -2,6 +2,14 @@
 
 ## [Unreleased]
 
+### Added
+
+- Support for `test` and `production` execution environments. ([#222](https://github.com/heroku/buildpacks-dotnet/pull/222))
+
+### Changed
+
+- The NuGet cache layer is now a build layer and available for later buildpacks. ([#221](https://github.com/heroku/buildpacks-dotnet/pull/221))
+
 
 ## [v10] - 2025-03-11
 
