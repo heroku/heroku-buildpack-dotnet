@@ -130,10 +130,19 @@ run_build() {
 	"${CNB_BUILDPACK_DIR}/bin/build" "${CNB_BUILD_DIR}/layers" "${CNB_BUILD_DIR}/platform" "${CNB_BUILD_DIR}/buildpack_plan.toml" |& format_cnb_output
 }
 
-# Remove build layers to reduce slug size
-remove_build_layers() {
-	for item in "sdk" "nuget-cache"; do
-		rm -rf "${CNB_BUILD_DIR}/layers/${item}" "${CNB_BUILD_DIR}/layers/${item}.toml"
+# Purge non-launch layers to reduce slug size
+remove_non_launch_layers() {
+	for layer_toml in "${CNB_BUILD_DIR}/layers/"*.toml; do
+		case "$(basename "${layer_toml}")" in
+			launch.toml | build.toml | store.toml)
+				continue
+				;;
+			*)
+				if ! grep -q '^launch = true' "${layer_toml}"; then
+					rm -rf "${layer_toml%.toml}" "${layer_toml}"
+				fi
+				;;
+		esac
 	done
 }
 
@@ -156,5 +165,5 @@ process_env_files() {
 initialize_environment
 download_and_extract_cnb
 run_build
-remove_build_layers
+remove_non_launch_layers
 process_env_files
