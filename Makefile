@@ -1,5 +1,5 @@
 # These targets are not files
-.PHONY: lint lint-scripts lint-ruby check-format format run publish
+.PHONY: lint lint-scripts lint-ruby check-format format run run-ci publish
 
 STACK ?= heroku-24
 FIXTURE ?= spec/fixtures/basic_web_8.0
@@ -36,6 +36,23 @@ run:
 			[[ -f /tmp/build/bin/compile ]] && { echo -e "\n~ Compile (Inline Buildpack):" && (source ./export && /tmp/build/bin/compile /tmp/build /tmp/cache /tmp/env); }; \
 			echo -e "\n~ Release:" && ./bin/release /tmp/build; \
 			echo -e "\nBuild successful!"; \
+		'
+	@echo
+
+run-ci:
+	@echo "Running buildpack CI scripts using: STACK=$(STACK) FIXTURE=$(FIXTURE)"
+	@docker run --rm -v $(PWD):/src:ro --tmpfs /app -e "HOME=/app" -e "STACK=$(STACK)" "$(STACK_IMAGE_TAG)" \
+		bash -euo pipefail -c '\
+			mkdir /tmp/buildpack /tmp/build /tmp/cache /tmp/env; \
+			cp -r /src/{bin,lib,vendor} /tmp/buildpack; \
+			cp -rT /src/$(FIXTURE) /tmp/build; \
+			cd /tmp/buildpack; \
+			unset $$(printenv | cut -d '=' -f 1 | grep -vE "^(HOME|LANG|PATH|STACK)$$"); \
+			echo -e "\n~ Detect:" && ./bin/detect /tmp/build; \
+			echo -e "\n~ Test Compile:" && ./bin/test-compile /tmp/build /tmp/cache /tmp/env; \
+			echo -e "\n~ Sourcing profile:" && { source /tmp/build/.profile.d/dotnet.sh && printenv; }; \
+			echo -e "\n~ Test:" && ./bin/test /tmp/build /tmp/cache /tmp/env; \
+			echo -e "\nTest compilation and execution successful!"; \
 		'
 	@echo
 
