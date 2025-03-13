@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Usage: bin/test-compile <build-dir> <cache-dir> <env-dir>
+# See: https://devcenter.heroku.com/articles/testpack-api#bin-test-compile
+
+set -euo pipefail
+shopt -s inherit_errexit
+
+BUILDPACK_DIR=$(cd "$(dirname "$(dirname "${BASH_SOURCE[0]}")")" && pwd)
+
+CNB_EXEC_ENV="test" "${BUILDPACK_DIR}/bin/compile" "${1}" "${2}" "${3}"
