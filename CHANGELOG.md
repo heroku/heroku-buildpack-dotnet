@@ -4,8 +4,8 @@
 
 ### Changed
 
-- The buildpack will now restore .NET tools for any execution environment. ([#226](https://github.com/heroku/buildpacks-dotnet/pull/226))
-- The log output now reflects whether a project or solution file was used for SDK version detection. ([#224](https://github.com/heroku/buildpacks-dotnet/pull/224))
+- The buildpack will now also restore .NET tools for Heroku CI. ([#63](https://github.com/heroku/heroku-buildpack-dotnet/pull/63))
+- The log output now reflects whether a project or solution file was used for SDK version detection. ([#63](https://github.com/heroku/heroku-buildpack-dotnet/pull/63))
 
 
 ## [v11] - 2025-03-13
