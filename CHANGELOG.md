@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+### Changed
+
+- The buildpack will now restore .NET tools for any execution environment. ([#226](https://github.com/heroku/buildpacks-dotnet/pull/226))
+- Restored .NET tools are now available for later buildpacks. ([#226](https://github.com/heroku/buildpacks-dotnet/pull/226))
+- The log output now reflects whether a project or solution file was used for SDK version detection. ([#224](https://github.com/heroku/buildpacks-dotnet/pull/224))
+
 
 ## [v11] - 2025-03-13
 
