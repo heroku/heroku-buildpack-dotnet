@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+
+## [v12] - 2025-03-18
+
 ### Changed
 
 - The buildpack will now also restore .NET tools for Heroku CI. ([#63](https://github.com/heroku/heroku-buildpack-dotnet/pull/63))
@@ -82,7 +85,8 @@
 
 - Initial implementation.
 
-[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v11...main
+[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v12...main
+[v12]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v11...v12
 [v11]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v10...v11
 [v10]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v9...v10
 [v9]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v8...v9
