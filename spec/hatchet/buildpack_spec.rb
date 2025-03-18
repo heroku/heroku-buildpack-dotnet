@@ -12,7 +12,7 @@ RSpec.describe 'Buildpack execution' do
           remote: -----> Using buildpack: #{DEFAULT_BUILDPACK_URL}
           remote: -----> .NET app detected
           remote: -----> SDK version detection
-          remote:        Detected .NET file to publish: `/tmp/build_.*/foo.csproj`
+          remote:        Detected .NET project: `/tmp/build_.*/foo.csproj`
           remote:        Inferring version requirement from `/tmp/build_.*/foo.csproj`
           remote:        Detected version requirement: .*
           remote:        Resolved .NET SDK version .*
@@ -20,7 +20,7 @@ RSpec.describe 'Buildpack execution' do
           remote:        Downloading SDK from .*
           remote:        Verifying SDK checksum
           remote:        Installing SDK
-          remote: -----> Publish solution
+          remote: -----> Publish app
           remote:        Running `dotnet publish /tmp/build_.*/foo.csproj --runtime linux-x64 "-p:PublishDir=bin/publish" --artifacts-path /tmp/build_artifacts`
           remote: 
           remote:            Determining projects to restore...

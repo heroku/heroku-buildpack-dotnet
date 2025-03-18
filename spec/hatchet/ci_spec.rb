@@ -11,7 +11,7 @@ RSpec.describe 'Heroku CI' do
         expect(clean_output(test_run.output)).to match(Regexp.new(<<~REGEX, Regexp::MULTILINE))
           -----> .NET app detected
           -----> SDK version detection
-                 Detected .NET file to publish: `/app/netslnwithtests.sln`
+                 Detected .NET solution: `/app/netslnwithtests.sln`
                  Detecting version requirement from root global.json file
                  Detected version requirement: `=9.0.201`
                  Resolved .NET SDK version `9.0.201` \\(linux-amd64\\)
