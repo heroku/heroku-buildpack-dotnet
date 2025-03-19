@@ -7,7 +7,6 @@ parse_launch_processes() {
 	local launch_toml_file="${2}"
 
 	local type=""
-	local command=""
 	local line
 
 	while IFS= read -r line; do
@@ -16,12 +15,25 @@ parse_launch_processes() {
 			type="${BASH_REMATCH[1]}"
 		fi
 
-		# Extract the command from lines like `command = ["bash", "-c", "run_command"]`
-		if [[ ${line} =~ ^command[[:space:]]*=[[:space:]]*\[\"bash\",[[:space:]]*\"-c\",[[:space:]]*\"(.*)\"[[:space:]]*\] ]]; then
-			command="${BASH_REMATCH[1]}"
-			_processes["${type}"]="${command}"
+		# Extract command array from lines like `command = ["bash", "-c", "run_command"]`, or `command = ["dotnet", "test", "foo.sln"]`
+		if [[ ${line} =~ ^command[[:space:]]*=[[:space:]]*\[(.*)\] ]]; then
+			local command=()
+			local raw_command="${BASH_REMATCH[1]}"
+
+			# Extract quoted values
+			while [[ ${raw_command} =~ \"([^\"]+)\" ]]; do
+				command+=("${BASH_REMATCH[1]}")
+				raw_command=${raw_command#*\""${BASH_REMATCH[1]}"\"}
+			done
+
+			# Store the command, handling `bash -c` case where we only want the third argument
+			if [[ ${#command[@]} -ge 3 && "${command[0]}" == "bash" && "${command[1]}" == "-c" ]]; then
+				_processes["${type}"]="${command[2]}"
+			else
+				_processes["${type}"]="${command[*]}"
+			fi
+
 			type=""
-			command=""
 		fi
 	done <"${launch_toml_file}"
 }
