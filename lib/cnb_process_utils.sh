@@ -15,7 +15,8 @@ parse_launch_processes() {
 			type="${BASH_REMATCH[1]}"
 		fi
 
-		# Extract command array from lines like `command = ["bash", "-c", "run_command"]`, or `command = ["dotnet", "test", "foo.sln"]`
+		# Extract command array from lines like `command = ["bash", "-c", "run_command"]`,
+		# `command = ["dotnet", "test", "foo.csproj", "--verbosity", "normal"]`.
 		if [[ ${line} =~ ^command[[:space:]]*=[[:space:]]*\[(.*)\] ]]; then
 			local command=()
 			local raw_command="${BASH_REMATCH[1]}"
