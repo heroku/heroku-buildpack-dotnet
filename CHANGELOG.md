@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Added
+
+- Support for .NET SDK versions: 9.0.202 (linux-amd64), 9.0.202 (linux-arm64). ([#65](https://github.com/heroku/heroku-buildpack-dotnet/pull/65))
 
 ## [v12] - 2025-03-18
 
@@ -9,7 +12,6 @@
 
 - The buildpack will now also restore .NET tools for Heroku CI. ([#63](https://github.com/heroku/heroku-buildpack-dotnet/pull/63))
 - The log output now reflects whether a project or solution file was used for SDK version detection. ([#63](https://github.com/heroku/heroku-buildpack-dotnet/pull/63))
-
 
 ## [v11] - 2025-03-13
 

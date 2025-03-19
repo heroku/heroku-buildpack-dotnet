@@ -22,7 +22,7 @@ RSpec.describe 'Heroku CI' do
           -----> Done .*
           -----> No test-setup command provided. Skipping.
           -----> Running .NET buildpack tests...
-                 Running test command: `dotnet test /app/netslnwithtests.sln`
+                 Running test command: `dotnet test netslnwithtests.sln`
                    Determining projects to restore...
                    Restored /app/xunittests/xunittests.csproj .*
                    xunittests -> /app/xunittests/bin/Debug/net9.0/xunittests.dll
