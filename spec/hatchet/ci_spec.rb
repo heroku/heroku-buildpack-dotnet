@@ -57,6 +57,13 @@ RSpec.describe 'Heroku CI' do
 
     it 'runs published application' do
       app.deploy do |app|
+        expect(clean_output(app.output)).to include(<<~OUTPUT)
+          Found `consoleapp`: bash -c cd 'console app/bin/publish'; ./'console app'
+        OUTPUT
+        expect(clean_output(app.output)).to include(<<~OUTPUT)
+          Default types for buildpack -> consoleapp
+        OUTPUT
+
         expect(app.run('consoleapp')).to match('Hello, World!')
       end
     end
