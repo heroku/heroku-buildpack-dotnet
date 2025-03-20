@@ -54,5 +54,11 @@ RSpec.describe 'Heroku CI' do
         OUTPUT
       end
     end
+
+    it 'runs published application' do
+      app.deploy do |app|
+        expect(app.run('consoleapp')).to match('Hello, World!')
+      end
+    end
   end
 end
