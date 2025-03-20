@@ -38,4 +38,21 @@ RSpec.describe 'Heroku CI' do
       end
     end
   end
+
+  context 'when using solution with filename spaces, and verbosity level configured' do
+    let(:app) do
+      Hatchet::Runner.new(
+        'spec/fixtures/solution_with_spaces',
+        config: { 'MSBUILD_VERBOSITY_LEVEL' => 'normal' }
+      )
+    end
+
+    it 'runs expected test command' do
+      app.run_ci do |test_run|
+        expect(clean_output(test_run.output)).to include(<<~OUTPUT)
+          Running test command: `dotnet test "solution with spaces.sln" --verbosity normal`
+        OUTPUT
+      end
+    end
+  end
 end
