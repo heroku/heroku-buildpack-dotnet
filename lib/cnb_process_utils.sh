@@ -16,22 +16,33 @@ parse_launch_processes() {
 		fi
 
 		# Extract command array from lines like `command = ["bash", "-c", "run_command"]`,
-		# `command = ["dotnet", "test", "foo.csproj", "--verbosity", "normal"]`.
+		# `command = ["dotnet", "test", "foo.csproj"]`.
+		# `command = ["dotnet", "test", "foo bar.csproj", "--verbosity", "normal"]`.
 		if [[ ${line} =~ ^command[[:space:]]*=[[:space:]]*\[(.*)\] ]]; then
 			local command=()
 			local raw_command="${BASH_REMATCH[1]}"
+			local quoted_command=()
 
 			# Extract quoted values
 			while [[ ${raw_command} =~ \"([^\"]+)\" ]]; do
-				command+=("${BASH_REMATCH[1]}")
-				raw_command=${raw_command#*\""${BASH_REMATCH[1]}"\"}
+				local arg="${BASH_REMATCH[1]}"
+				command+=("${arg}")
+
+				# Quote argument if it contains spaces
+				if [[ "${arg}" =~ [[:space:]] ]]; then
+					quoted_command+=("\"${arg}\"")
+				else
+					quoted_command+=("${arg}")
+				fi
+
+				raw_command=${raw_command#*\""${arg}"\"}
 			done
 
-			# Store the command, handling `bash -c` case where we only want the third argument
+			# Store the command, handling `bash -c` case where we only want the (unquoted) third argument
 			if [[ ${#command[@]} -ge 3 && "${command[0]}" == "bash" && "${command[1]}" == "-c" ]]; then
 				_processes["${type}"]="${command[2]}"
 			else
-				_processes["${type}"]="${command[*]}"
+				_processes["${type}"]="${quoted_command[*]}"
 			fi
 
 			type=""
