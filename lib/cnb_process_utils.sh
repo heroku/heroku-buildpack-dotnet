@@ -28,8 +28,10 @@ parse_launch_processes() {
 				local arg="${BASH_REMATCH[1]}"
 				command+=("${arg}")
 
-				# Quote argument if it contains spaces
-				if [[ "${arg}" =~ [[:space:]] ]]; then
+				# Quote arg if it differs from it's own `printf '%q'` formatting. This
+				# is a hack to check for special characters that'd need escaping (while
+				# preferring to quote the arg for readability) without using regex, sed etc.
+				if [[ "$(printf '%q' "${arg}")" != "${arg}" ]]; then
 					quoted_command+=("\"${arg}\"")
 				else
 					quoted_command+=("${arg}")
