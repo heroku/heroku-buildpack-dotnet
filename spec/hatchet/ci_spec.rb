@@ -39,7 +39,7 @@ RSpec.describe 'Heroku CI' do
     end
   end
 
-  context 'when using solution with filename spaces, and verbosity level configured' do
+  context 'when using solution with spaces in the filename, and verbosity level configured' do
     let(:app) do
       Hatchet::Runner.new(
         'spec/fixtures/solution_with_spaces',
@@ -47,7 +47,7 @@ RSpec.describe 'Heroku CI' do
       )
     end
 
-    it 'runs expected test command' do
+    it 'runs the expected test command' do
       app.run_ci do |test_run|
         expect(clean_output(test_run.output)).to include(<<~OUTPUT)
           Running test command: `dotnet test "solution with spaces.sln" --verbosity normal`
@@ -55,7 +55,7 @@ RSpec.describe 'Heroku CI' do
       end
     end
 
-    it 'runs published application' do
+    it 'runs the published application' do
       app.deploy do |app|
         expect(clean_output(app.output)).to include(<<~OUTPUT)
           Found `consoleapp`: bash -c cd 'console app/bin/publish'; ./'console app'
