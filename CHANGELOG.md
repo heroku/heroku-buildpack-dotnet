@@ -4,10 +4,9 @@
 
 ### Changed
 
-- The buildpack now sanitizes launch process type names, based on project assembly names, by filtering out invalid characters. ([#237](https://github.com/heroku/buildpacks-dotnet/pull/237))
-- Launch process commands with paths containing special characters (including spaces) are now properly quoted. ([#239](https://github.com/heroku/buildpacks-dotnet/pull/239))
-- The `test` launch process, added when targeting the test execution environment, now properly handles solution/project filenames containing special characters (including spaces). ([#240](https://github.com/heroku/buildpacks-dotnet/pull/240))
-
+- The buildpack now sanitizes process type names (based on project assembly names) by filtering out invalid characters. ([#68](https://github.com/heroku/heroku-buildpack-dotnet/pull/68))
+- Default process types with paths containing special characters (including spaces) are now properly quoted. ([#68](https://github.com/heroku/heroku-buildpack-dotnet/pull/68))
+- The default test command executed by Heroku CI now properly handles solution/project filenames containing special characters (including spaces). ([#68](https://github.com/heroku/heroku-buildpack-dotnet/pull/68))
 
 ## [v13] - 2025-03-19
 
