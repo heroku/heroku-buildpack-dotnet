@@ -19,6 +19,6 @@ if [[ -f "${launch_toml_file}" ]]; then
 	echo "---"
 	echo "default_process_types:"
 	for type in "${!launch_processes[@]}"; do
-		echo "  ${type}: \"${launch_processes[${type}]}\""
+		echo "  ${type}: ${launch_processes[${type}]}"
 	done
 fi
