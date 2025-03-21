@@ -64,7 +64,7 @@ RSpec.describe 'Heroku CI' do
           Default types for buildpack -> consoleapp
         OUTPUT
 
-        expect(app.run('consoleapp')).to match('Hello, World!')
+        expect(`heroku run -a #{app.name} consoleapp`).to match('Hello, World!')
       end
     end
   end
