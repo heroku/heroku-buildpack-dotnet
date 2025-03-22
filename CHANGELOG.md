@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+
+## [v14] - 2025-03-22
+
 ### Changed
 
 - The buildpack now sanitizes process type names (based on project assembly names) by filtering out invalid characters. ([#68](https://github.com/heroku/heroku-buildpack-dotnet/pull/68))
@@ -95,7 +98,8 @@
 
 - Initial implementation.
 
-[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v13...main
+[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v14...main
+[v14]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v13...v14
 [v13]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v12...v13
 [v12]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v11...v12
 [v11]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v10...v11
