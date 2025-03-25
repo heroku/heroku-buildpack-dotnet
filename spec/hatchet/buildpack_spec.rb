@@ -31,13 +31,13 @@ RSpec.describe 'Buildpack execution' do
           remote:        Done .*
           remote: -----> Process types
           remote:        Detecting process types from published artifacts
-          remote:        Found `foo`: .*
+          remote:        Found `web`: .*
           remote:        No Procfile detected
           remote:        Registering detected process types as launch processes
           remote: -----> Done .*
           remote: -----> Discovering process types
           remote:        Procfile declares types     -> \\(none\\)
-          remote:        Default types for buildpack -> foo
+          remote:        Default types for buildpack -> web
         REGEX
       end
     end
