@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+
+## [v15] - 2025-03-25
+
 ### Changed
 
 - The buildpack will now set the process type `web` for a single web application within a solution. When a solution contains multiple web applications, the process type is derived from the project assembly name. ([#71](https://github.com/heroku/heroku-buildpack-dotnet/pull/71))
@@ -101,7 +104,8 @@
 
 - Initial implementation.
 
-[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v14...main
+[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v15...main
+[v15]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v14...v15
 [v14]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v13...v14
 [v13]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v12...v13
 [v12]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v11...v12
