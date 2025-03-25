@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Changed
+
+- The buildpack will now set the process type `web` for a single web application within a solution. When a solution contains multiple web applications, the process type is derived from the project assembly name. ([#242](https://github.com/heroku/buildpacks-dotnet/pull/242))
+
 
 ## [v14] - 2025-03-22
 
