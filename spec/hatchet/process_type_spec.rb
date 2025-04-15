@@ -22,13 +22,13 @@ RSpec.describe 'Process types' do
     it 'runs the published default process type' do
       app.deploy do |app|
         expect(clean_output(app.output)).to include(<<~OUTPUT)
-          Found `consoleapp`: bash -c cd 'console app/bin/publish'; ./'console app'
+          Found `console-app`: bash -c cd 'console app/bin/publish'; ./'console app'
         OUTPUT
         expect(clean_output(app.output)).to include(<<~OUTPUT)
-          Default types for buildpack -> consoleapp
+          Default types for buildpack -> console-app
         OUTPUT
 
-        expect(`heroku run -a #{app.name} consoleapp`).to match('Hello, World!')
+        expect(`heroku run -a #{app.name} console-app`).to match('Hello, World!')
       end
     end
   end
