@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+
+## [v17] - 2025-04-17
+
 ### Changed
 
 - The buildpack now lowercases launch process type names, and replaces spaces, dots (`.`), and underscores (`_`) with hyphens (`-`) for broader compatibility. ([#77](https://github.com/heroku/heroku-buildpack-dotnet/pull/77))
@@ -113,7 +116,8 @@
 
 - Initial implementation.
 
-[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v16...main
+[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v17...main
+[v17]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v16...v17
 [v16]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v15...v16
 [v15]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v14...v15
 [v14]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v13...v14
