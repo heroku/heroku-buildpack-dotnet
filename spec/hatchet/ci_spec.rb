@@ -16,7 +16,7 @@ RSpec.describe 'Heroku CI' do
                  Detected version requirement: `=9.0.201`
                  Resolved .NET SDK version `9.0.201` \\(linux-amd64\\)
           -----> SDK installation
-                 Downloading SDK from https://download.visualstudio.microsoft.com/download/pr/82a7fc96-b53b-4af4-ac3a-ef0a6c9325d5/84e522c31482538cddf696d03c5b20af/dotnet-sdk-9.0.201-linux-x64.tar.gz .*
+                 Downloading SDK from https://builds.dotnet.microsoft.com/dotnet/Sdk/9.0.201/dotnet-sdk-9.0.201-linux-x64.tar.gz .*
                  Verifying SDK checksum
                  Installing SDK
           -----> Done .*
