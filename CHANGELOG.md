@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+### Changed
+
+- Enhance error message for missing project references in solution files to include common causes and detailed resolution steps. ([#81](https://github.com/heroku/heroku-buildpack-dotnet/pull/81))
+- The .NET SDK inventory was updated with new release artifact download URLs. ([#81](https://github.com/heroku/heroku-buildpack-dotnet/pull/81))
+
 
 ## [v17] - 2025-04-17
 
