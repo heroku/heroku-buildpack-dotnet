@@ -6,6 +6,7 @@ ENV['HATCHET_DEFAULT_STACK'] ||= 'heroku-24'
 require 'rspec/core'
 require 'rspec/retry'
 require 'hatchet'
+require 'English'
 
 FIXTURE_DIR = Pathname.new(__FILE__).parent.join('fixtures')
 
