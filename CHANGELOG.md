@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+
+## [v18] - 2025-05-09
+
 ### Changed
 
 - Enhance error message for missing project references in solution files to include common causes and detailed resolution steps. ([#81](https://github.com/heroku/heroku-buildpack-dotnet/pull/81))
@@ -121,7 +124,8 @@
 
 - Initial implementation.
 
-[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v17...main
+[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v18...main
+[v18]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v17...v18
 [v17]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v16...v17
 [v16]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v15...v16
 [v15]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v14...v15
