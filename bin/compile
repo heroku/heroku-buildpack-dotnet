@@ -7,7 +7,7 @@ set -euo pipefail
 BUILD_DIR="${1}"
 ENV_DIR="${3}"
 
-DOTNET_CNB_VERSION="0.5.1"
+DOTNET_CNB_VERSION="0.5.2"
 
 BUILDPACK_DIR=$(cd "$(dirname "$(dirname "${BASH_SOURCE[0]}")")" && pwd)
 
