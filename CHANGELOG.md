@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Changed
+
+- Improved the error messages shown if there is a networking or server related error downloading buildpack dependencies. ([#91](https://github.com/heroku/heroku-buildpack-dotnet/pull/91))
 
 ## [v21] - 2025-06-12
 
