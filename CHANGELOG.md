@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+
+## [v22] - 2025-06-24
+
 ### Removed
 
 - A warning about breaking launch process type name changes is no longer written to the buildpack log output. ([#92](https://github.com/heroku/heroku-buildpack-dotnet/pull/92))
@@ -148,7 +151,8 @@
 
 - Initial implementation.
 
-[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v21...main
+[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v22...main
+[v22]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v21...v22
 [v21]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v20...v21
 [v20]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v19...v20
 [v19]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v18...v19
