@@ -4,7 +4,7 @@
 
 ### Removed
 
-- A warning about breaking launch process type name changes (introduced in version [0.5.0](https://github.com/heroku/buildpacks-dotnet/releases/tag/v0.5.0)) is no longer written to the buildpack log output. ([#275](https://github.com/heroku/buildpacks-dotnet/pull/275))
+- A warning about breaking launch process type name changes (introduced in version [0.5.0](https://github.com/heroku/buildpacks-dotnet/releases/tag/v0.5.0)) is no longer written to the buildpack log output. ([#92](https://github.com/heroku/heroku-buildpack-dotnet/pull/92))
 
 
 ### Changed
