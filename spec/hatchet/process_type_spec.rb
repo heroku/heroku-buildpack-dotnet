@@ -27,18 +27,6 @@ RSpec.describe 'Process types' do
           remote:        Found `console-app`: bash -c cd 'console app/bin/publish'; ./'console app'
           remote:        No Procfile detected
           remote:        Registering detected process types as launch processes
-          remote:        WARNING: Auto-detected process type names were recently changed.
-          remote:        
-          remote:        The buildpack now lowercases the process name and replaces spaces, dots (`.`),
-          remote:        and underscores (`_`) with hyphens (`-`). Currently scaled worker dynos may be
-          remote:        removed following deployment if the process type name was changed as a result.
-          remote:        
-          remote:        Verify that all expected worker dynos are running on your app with `heroku ps`,
-          remote:        and scale up recently renamed processes as needed using the detected process
-          remote:        type names listed above.
-          remote:        
-          remote:        For more information on automatic process type detection, see:
-          remote:        https://devcenter.heroku.com/articles/dotnet-behavior-in-heroku#automatic-process-type-detection
         OUTPUT
         expect(clean_output(app.output)).to include(<<~OUTPUT)
           Default types for buildpack -> console-app

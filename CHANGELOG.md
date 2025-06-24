@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Removed
+
+- A warning about breaking launch process type name changes is no longer written to the buildpack log output. ([#92](https://github.com/heroku/heroku-buildpack-dotnet/pull/92))
+
 ### Changed
 
 - Improved the error messages shown if there is a networking or server related error downloading buildpack dependencies. ([#91](https://github.com/heroku/heroku-buildpack-dotnet/pull/91))
