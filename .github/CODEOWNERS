@@ -10,3 +10,4 @@
 # Only .NET language owners should be the requested reviewers here
 CHANGELOG.md @runesoerensen
 Gemfile.lock @runesoerensen
+/.github/workflows/ @runesoerensen
