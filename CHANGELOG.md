@@ -2,10 +2,6 @@
 
 ## [Unreleased]
 
-### Added
-
-- Instrumentation of .NET SDK resolution and download operations. ([#278](https://github.com/heroku/buildpacks-dotnet/pull/278))
-
 
 ## [v22] - 2025-06-24
 
