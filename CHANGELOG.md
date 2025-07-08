@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+
+## [v23] - 2025-07-08
+
 ### Added
 
 - Support for .NET SDK versions: 8.0.118 (linux-amd64), 8.0.118 (linux-arm64), 8.0.315 (linux-amd64), 8.0.315 (linux-arm64), 8.0.412 (linux-amd64), 8.0.412 (linux-arm64), 9.0.108 (linux-amd64), 9.0.108 (linux-arm64), 9.0.302 (linux-amd64), 9.0.302 (linux-arm64). ([#98](https://github.com/heroku/heroku-buildpack-dotnet/pull/98))
@@ -154,7 +157,8 @@
 
 - Initial implementation.
 
-[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v22...main
+[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v23...main
+[v23]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v22...v23
 [v22]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v21...v22
 [v21]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v20...v21
 [v20]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v19...v20
