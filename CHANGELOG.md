@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Added
+
+- Support for .NET SDK versions: 8.0.118 (linux-amd64), 8.0.118 (linux-arm64), 8.0.315 (linux-amd64), 8.0.315 (linux-arm64), 8.0.412 (linux-amd64), 8.0.412 (linux-arm64), 9.0.108 (linux-amd64), 9.0.108 (linux-arm64), 9.0.302 (linux-amd64), 9.0.302 (linux-arm64).
+
 
 ## [v22] - 2025-06-24
 
