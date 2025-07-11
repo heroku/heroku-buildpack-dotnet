@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+# Usage: bin/report <build-dir> <cache-dir> <env-dir>
+
+# Produces a build report containing metadata about the build for the build system.
+# This script is executed for both successful and failing builds.
+#
+# Metadata must be emitted to stdout as valid YAML key-value pairs. Any fields
+# that should always be typed as a string must be explicitly quoted.
+#
+# Example valid stdout:
+#    sdk_version_requirement: '^8.0'
+#    sdk_download_attempts: 1
+#
+# Failures in this script don't cause the overall build to fail (and won't appear in user
+# facing build logs) to avoid breaking builds unnecessarily / causing confusion. To debug
+# issues check the internal build system logs for `buildpack.report.failed` events, or
+# when developing run `make run` in this repo locally, which runs `bin/report` too.
+
+# The absolute path to the root of the buildpack.
+BUILDPACK_DIR=$(cd "$(dirname "$(dirname "${BASH_SOURCE[0]}")")" && pwd)
+
+# The absolute path to the telemetry file produced by the .NET CNB's build executable.
+INPUT_FILE="/tmp/libcnb-telemetry/heroku_dotnet-build.jsonl"
+
+# Check that the input file exists.
+if [[ ! -f "${INPUT_FILE}" ]]; then
+	echo "Error: Input file not found at ${INPUT_FILE}" >&2
+	exit 1
+fi
+
+# Execute jq with the build report script and the input file.
+jq -rf "${BUILDPACK_DIR}/lib/libcnb-build-report.jq" "${INPUT_FILE}"
