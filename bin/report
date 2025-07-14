@@ -16,6 +16,8 @@
 # issues check the internal build system logs for `buildpack.report.failed` events, or
 # when developing run `make run` in this repo locally, which runs `bin/report` too.
 
+set -euo pipefail
+
 # The absolute path to the root of the buildpack.
 BUILDPACK_DIR=$(cd "$(dirname "$(dirname "${BASH_SOURCE[0]}")")" && pwd)
 
@@ -29,4 +31,4 @@ if [[ ! -f "${INPUT_FILE}" ]]; then
 fi
 
 # Execute jq with the build report script and the input file.
-jq -rf "${BUILDPACK_DIR}/lib/libcnb-build-report.jq" "${INPUT_FILE}"
+jq -s -rf "${BUILDPACK_DIR}/lib/libcnb_telemetry_build_report.jq" "${INPUT_FILE}"

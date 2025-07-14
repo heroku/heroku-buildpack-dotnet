@@ -5,6 +5,7 @@ name = ".NET"
 files = [
   ".github/",
   "etc/publish.sh",
+  "lib/validate_report.sh",
   "spec/",
   ".editorconfig",
   ".gitignore",

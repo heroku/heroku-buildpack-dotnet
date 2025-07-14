@@ -32,9 +32,9 @@ run:
 			unset $$(printenv | cut -d '=' -f 1 | grep -vE "^(HOME|LANG|PATH|STACK)$$"); \
 			echo -e "\n~ Detect:" && ./bin/detect /tmp/build; \
 			echo -e "\n~ Compile:" && { ./bin/compile /tmp/build /tmp/cache /tmp/env || COMPILE_FAILED=1; }; \
-			echo -e "\n~ Report:" && ./bin/report /tmp/build /tmp/cache /tmp/env; \
 			[[ "$${COMPILE_FAILED:-}" == "1" ]] && exit 0; \
 			[[ -f /tmp/build/bin/compile ]] && { echo -e "\n~ Compile (Inline Buildpack):" && (source ./export && /tmp/build/bin/compile /tmp/build /tmp/cache /tmp/env); }; \
+			echo -e "\n~ Report:" && REPORT_OUTPUT=$$(./bin/report /tmp/build /tmp/cache /tmp/env) && echo "$$REPORT_OUTPUT" && echo "$$REPORT_OUTPUT" | lib/validate_report.sh; \
 			echo -e "\n~ Release:" && ./bin/release /tmp/build; \
 			echo -e "\nBuild successful!"; \
 		'
