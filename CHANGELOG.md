@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Added
+
+- Implemented the `bin/report` build report API. ([#97](https://github.com/heroku/heroku-buildpack-dotnet/pull/97))
 
 ## [v23] - 2025-07-08
 
