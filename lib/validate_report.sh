@@ -6,7 +6,7 @@
 # Validates that all expected fields are present and properly formatted.
 # Reports all missing/invalid patterns and exits with status 1 if any errors found.
 
-set -uo pipefail
+set -euo pipefail
 
 EXPECTED_PATTERNS=(
 	"^sdk_version_requirement: '[^']*'"
@@ -29,7 +29,7 @@ validate_report_output() {
 	for pattern in "${EXPECTED_PATTERNS[@]}"; do
 		if ! echo "${report_output}" | grep -q "${pattern}"; then
 			echo "ERROR: Pattern '${pattern}' missing or invalid format" >&2
-			((errors++))
+			errors=$((errors + 1))
 		fi
 	done
 
