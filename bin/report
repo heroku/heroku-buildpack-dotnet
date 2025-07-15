@@ -31,4 +31,4 @@ if [[ ! -f "${INPUT_FILE}" ]]; then
 fi
 
 # Execute jq with the build report script and the input file.
-jq -s -rf "${BUILDPACK_DIR}/lib/libcnb_telemetry_build_report.jq" "${INPUT_FILE}"
+jq --slurp --raw-output --from-file "${BUILDPACK_DIR}/lib/libcnb_telemetry_build_report.jq" "${INPUT_FILE}"
