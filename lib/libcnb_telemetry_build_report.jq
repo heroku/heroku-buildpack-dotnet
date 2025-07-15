@@ -38,7 +38,7 @@ def process_span_by_type($summary):
       $summary + {
         sdk_download_file_url: get_attr("url.full"),
         sdk_download_file_duration_ns: duration_ns,
-        sdk_download_file_attempts: increment_counter($summary.sdk_download_attempts)
+        sdk_download_file_attempts: increment_counter($summary.sdk_download_file_attempts)
       }
     elif has_name("verify_checksum") then
       $summary + { sdk_verify_checksum_duration_ns: duration_ns }
