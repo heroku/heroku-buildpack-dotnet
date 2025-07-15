@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+
+## [v24] - 2025-07-15
+
 ### Added
 
 - Implemented the `bin/report` build report API. ([#97](https://github.com/heroku/heroku-buildpack-dotnet/pull/97))
@@ -160,7 +163,8 @@
 
 - Initial implementation.
 
-[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v23...main
+[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v24...main
+[v24]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v23...v24
 [v23]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v22...v23
 [v22]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v21...v22
 [v21]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v20...v21
