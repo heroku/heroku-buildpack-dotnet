@@ -2,9 +2,12 @@
 
 ## [Unreleased]
 
+
+## [v25] - 2025-07-16
+
 ### Changed
 
-- `bin/report` output containing single quotes is now properly escaped. ([#101]https://github.com/heroku/heroku-buildpack-dotnet/pull/101)
+- `bin/report` output containing single quotes is now properly escaped. ([#101](https://github.com/heroku/heroku-buildpack-dotnet/pull/101))
 
 ## [v24] - 2025-07-15
 
@@ -166,7 +169,8 @@
 
 - Initial implementation.
 
-[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v24...main
+[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v25...main
+[v25]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v24...v25
 [v24]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v23...v24
 [v23]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v22...v23
 [v22]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v21...v22
