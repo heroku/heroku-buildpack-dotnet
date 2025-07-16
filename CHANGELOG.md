@@ -7,7 +7,7 @@
 
 ### Changed
 
-- `bin/report` output containing single quotes is now properly escaped. ([#101]https://github.com/heroku/heroku-buildpack-dotnet/pull/101)
+- `bin/report` output containing single quotes is now properly escaped. ([#101](https://github.com/heroku/heroku-buildpack-dotnet/pull/101))
 
 ## [v24] - 2025-07-15
 
