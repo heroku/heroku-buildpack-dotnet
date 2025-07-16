@@ -54,7 +54,7 @@ def process_span_by_type($summary):
 def format_report:
   to_entries
   | map(select(.value != null))
-  | map("\(.key): \(.value | if type == "string" then "'\(.)'" else tostring end)")
+  | map("\(.key): \(.value | if type == "string" then "'\(. | gsub("'"; "''"))'" else tostring end)")
   | join("\n");
 
 # Extract all spans from all JSON objects in the slurped array
