@@ -6,7 +6,6 @@
 
 - Support for .NET SDK versions: 9.0.303 (linux-amd64), 9.0.303 (linux-arm64). ([#103](https://github.com/heroku/heroku-buildpack-dotnet/pull/103))
 
-
 ## [v25] - 2025-07-16
 
 ### Changed
