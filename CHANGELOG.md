@@ -2,20 +2,17 @@
 
 ## [Unreleased]
 
-
 ## [v28] - 2025-08-14
 
 ### Added
 
 - Support for .NET SDK versions: 10.0.100-preview.1.25120.13, 10.0.100-preview.2.25164.34, 10.0.100-preview.3.25201.16, 10.0.100-preview.4.25258.110, 10.0.100-preview.5.25277.114, 10.0.100-preview.6.25358.103, 10.0.100-preview.7.25380.108. ([#109](https://github.com/heroku/heroku-buildpack-dotnet/pull/109))
 
-
 ## [v27] - 2025-08-05
 
 ### Added
 
 - Support for .NET SDK versions: 8.0.119 (linux-amd64), 8.0.119 (linux-arm64), 8.0.316 (linux-amd64), 8.0.316 (linux-arm64), 8.0.413 (linux-amd64), 8.0.413 (linux-arm64), 9.0.109 (linux-amd64), 9.0.109 (linux-arm64), 9.0.304 (linux-amd64), 9.0.304 (linux-arm64). ([#107](https://github.com/heroku/heroku-buildpack-dotnet/pull/107))
-
 
 ## [v26] - 2025-07-18
 
