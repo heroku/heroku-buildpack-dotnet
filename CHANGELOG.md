@@ -2,6 +2,14 @@
 
 ## [Unreleased]
 
+### Added
+
+- Support for customizing the default build configuration and MSBuild verbosity level with a `project.toml` file. ([#111](https://github.com/heroku/heroku-buildpack-dotnet/pull/111))
+
+### Changed
+
+- The buildpack now supports projects using .NET 10.0 preview releases (without custom `global.json` config). ([#111](https://github.com/heroku/heroku-buildpack-dotnet/pull/111))
+
 ## [v28] - 2025-08-14
 
 ### Added
