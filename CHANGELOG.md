@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+
+## [v29] - 2025-08-28
+
 ### Added
 
 - Support for customizing the default build configuration and MSBuild verbosity level with a `project.toml` file. ([#111](https://github.com/heroku/heroku-buildpack-dotnet/pull/111))
@@ -194,7 +197,8 @@
 
 - Initial implementation.
 
-[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v28...main
+[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v29...main
+[v29]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v28...v29
 [v28]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v27...v28
 [v27]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v26...v27
 [v26]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v25...v26
