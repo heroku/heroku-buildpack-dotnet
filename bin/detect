@@ -16,6 +16,6 @@ if find "${BUILD_DIR}" -maxdepth 1 -name "*.sln" -o -name "*.csproj" -o -name "*
 	echo ".NET"
 	exit 0
 else
-	output::error <<< "Error: No .NET project or solution files detected"
+	output::error <<< "Error: No .NET solution or project files (such as `foo.sln` or `foo.csproj`) found."
 	exit 1
 fi
