@@ -6,7 +6,7 @@ RSpec.describe 'Buildpack detection' do
   # This spec only tests cases where detection fails, since the success cases
   # are already tested in the specs for general buildpack functionality.
 
-  context 'when there are no recognised .NET files' do
+  context 'when there are no recognized .NET files' do
     let(:app) { Hatchet::Runner.new('spec/fixtures/no_dotnet_files', allow_failure: true) }
 
     it 'fails detection' do
