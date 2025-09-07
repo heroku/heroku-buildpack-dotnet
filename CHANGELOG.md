@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Fixed
+
+- Detection failure error messages are now correctly displayed in build logs. ([#115](https://github.com/heroku/heroku-buildpack-dotnet/pull/115))
 
 ## [v29] - 2025-08-28
 
