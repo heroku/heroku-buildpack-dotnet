@@ -19,5 +19,8 @@ fi
 
 output::error <<EOF
 Error: No .NET solution or project files (such as \`foo.sln\` or \`foo.csproj\`) found.
+
+For more information, see:
+https://devcenter.heroku.com/articles/dotnet-behavior-in-heroku#auto-detection
 EOF
 exit 1

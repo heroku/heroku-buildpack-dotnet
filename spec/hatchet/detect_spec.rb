@@ -15,6 +15,9 @@ RSpec.describe 'Buildpack detection' do
           remote: -----> App not compatible with buildpack: #{DEFAULT_BUILDPACK_URL}
           remote:        
           remote:  !     Error: No .NET solution or project files (such as `foo.sln` or `foo.csproj`) found.
+          remote:  !     
+          remote:  !     For more information, see:
+          remote:  !     https://devcenter.heroku.com/articles/dotnet-behavior-in-heroku#auto-detection
           remote: 
           remote: 
           remote:        More info: https://devcenter.heroku.com/articles/buildpacks#detection-failure
