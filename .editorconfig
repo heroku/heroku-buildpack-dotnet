@@ -8,6 +8,9 @@ indent_style = space
 insert_final_newline = true
 trim_trailing_whitespace = true
 
+[*.rb]
+trim_trailing_whitespace = false
+
 [*.sh]
 binary_next_line = true
 # We sadly have to use tabs in shell scripts otherwise we can't indent here documents:
