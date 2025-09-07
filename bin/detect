@@ -6,11 +6,16 @@ set -euo pipefail
 
 BUILD_DIR="${1}"
 
+# The absolute path to the root of the buildpack.
+BUILDPACK_DIR=$(cd "$(dirname "$(dirname "${BASH_SOURCE[0]}")")" && pwd)
+
+source "${BUILDPACK_DIR}/lib/output.sh"
+
 # Detect .NET project or solution files
 if find "${BUILD_DIR}" -maxdepth 1 -name "*.sln" -o -name "*.csproj" -o -name "*.fsproj" -o -name "*.vbproj" | grep -q .; then
 	echo ".NET"
 	exit 0
 else
-	echo "Error: No .NET project or solution files detected" >&2
+	output::error <<< "Error: No .NET project or solution files detected"
 	exit 1
 fi
