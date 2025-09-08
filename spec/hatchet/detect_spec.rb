@@ -3,9 +3,6 @@
 require_relative '../spec_helper'
 
 RSpec.describe 'Buildpack detection' do
-  # This spec only tests cases where detection fails, since the success cases
-  # are already tested in the specs for general buildpack functionality.
-
   context 'when there are no recognized .NET files' do
     let(:app) { Hatchet::Runner.new('spec/fixtures/no_dotnet_files', allow_failure: true) }
 
@@ -22,6 +19,33 @@ RSpec.describe 'Buildpack detection' do
           remote: 
           remote:        More info: https://devcenter.heroku.com/articles/buildpacks#detection-failure
         OUTPUT
+      end
+    end
+  end
+
+  context 'when project.toml has no solution_file configuration' do
+    let(:app) { Hatchet::Runner.new('spec/fixtures/project_toml_msbuild_only', allow_failure: true) }
+
+    it 'fails detection' do
+      app.deploy do |app|
+        expect(clean_output(app.output)).to include('App not compatible with buildpack')
+        # Ensure fallback error handling works even if Python TOML parsing fails
+        expect(clean_output(app.output)).to include(
+          'Error: No .NET solution or project files (such as `foo.sln` or `foo.csproj`) found.'
+        )
+      end
+    end
+  end
+
+  context 'when project.toml has solution_file configuration' do
+    let(:app) { Hatchet::Runner.new('spec/fixtures/project_toml_solution_only', allow_failure: true) }
+
+    it 'passes detection with configured solution_file' do
+      app.deploy do |app|
+        # Detection should pass because solution_file is configured in project.toml
+        # Build will fail because the configured solution file doesn't exist
+        expect(clean_output(app.output)).to include('remote: -----> .NET app detected')
+        expect(clean_output(app.output)).to include('Using configured solution file: `MyApp.sln`')
       end
     end
   end
