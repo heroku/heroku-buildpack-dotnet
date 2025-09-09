@@ -2,6 +2,14 @@
 
 ## [Unreleased]
 
+### Added
+
+- Support for configuring the solution to build and publish in `project.toml`. ([#120](https://github.com/heroku/heroku-buildpack-dotnet/pull/120))
+
+### Changed
+
+- The buildpack now requires an explicitly configured solution file when multiple solutions are present in the root directory. ([#120](https://github.com/heroku/heroku-buildpack-dotnet/pull/120))
+
 ### Fixed
 
 - Detection failure error messages are now correctly displayed in build logs. ([#115](https://github.com/heroku/heroku-buildpack-dotnet/pull/115))
