@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+
+## [v30] - 2025-09-09
+
 ### Added
 
 - Support for configuring the solution to build and publish in `project.toml`. ([#120](https://github.com/heroku/heroku-buildpack-dotnet/pull/120))
@@ -208,7 +211,8 @@
 
 - Initial implementation.
 
-[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v29...main
+[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v30...main
+[v30]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v29...v30
 [v29]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v28...v29
 [v28]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v27...v28
 [v27]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v26...v27
