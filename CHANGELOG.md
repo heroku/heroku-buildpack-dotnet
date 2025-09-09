@@ -4,12 +4,11 @@
 
 ### Changed
 
-- The buildpack now requires an explicitly configured solution file when multiple solutions are present in the root directory. ([#312](https://github.com/heroku/buildpacks-dotnet/pull/312))
-- Enhanced detection failure error message with actionable guidance and link to relevant documentation. ([#314](https://github.com/heroku/buildpacks-dotnet/pull/314))
+- The buildpack now requires an explicitly configured solution file when multiple solutions are present in the root directory. ([#120](https://github.com/heroku/heroku-buildpack-dotnet/pull/120))
 
 ### Added
 
-- Support for configuring the solution to build and publish in `project.toml`, including solutions located in subdirectories. ([#310](https://github.com/heroku/buildpacks-dotnet/pull/310), [#313](https://github.com/heroku/buildpacks-dotnet/pull/313), [#314](https://github.com/heroku/buildpacks-dotnet/pull/314))
+- Support for configuring the solution to build and publish in `project.toml`. ([#120](https://github.com/heroku/heroku-buildpack-dotnet/pull/120))
 
 ### Fixed
 
