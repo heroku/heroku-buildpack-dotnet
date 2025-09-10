@@ -2,6 +2,14 @@
 
 ## [Unreleased]
 
+### Added
+
+- Support for detecting .NET apps via `solution_file` configuration in `project.toml`. ([#119](https://github.com/heroku/heroku-buildpack-dotnet/pull/119))
+
+### Changed
+
+- Improved detection failure error messages with comprehensive troubleshooting guidance and directory listing. ([#119](https://github.com/heroku/heroku-buildpack-dotnet/pull/119))
+
 
 ## [v31] - 2025-09-09
 
