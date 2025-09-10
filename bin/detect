@@ -11,30 +11,36 @@ BUILDPACK_DIR=$(cd "$(dirname "$(dirname "${BASH_SOURCE[0]}")")" && pwd)
 
 source "${BUILDPACK_DIR}/lib/output.sh"
 
-# Function to parse TOML project.toml using Python
-parse_project_toml() {
+has_dotnet_solution_config() {
 	local toml_file="$1"
 
-	# Use Python parser (works on both heroku-22 with tomli and heroku-24 with tomllib)
-	local python_result
-	if python_result=$(python3 "${BUILDPACK_DIR}/lib/extract_solution_file.py" "${toml_file}" 2>/dev/null); then
-		if [[ -n "${python_result}" ]]; then
-			echo "${python_result}"
-			return 0
-		fi
-	fi
+	# Fail fast if the file doesn't exist.
+	[[ -f "${toml_file}" ]] || return 1
 
-	return 1
+	# Use Python to parse the TOML file.
+	# The script will exit with 0 (success) only if the entire key path exists.
+	# Any error (KeyError, file corruption, etc.) will cause a non-zero exit code.
+	python3 -c "
+import sys
+try:
+    # Use standard library tomllib if available (Python 3.11+)
+    import tomllib
+except ImportError:
+    # Fall back to the tomli package
+    import tomli as tomllib
+
+with open(sys.argv[1], 'rb') as f:
+    config = tomllib.load(f)
+
+# This line will raise a KeyError if any key in the path is missing.
+_ = config['com']['heroku']['buildpacks']['dotnet']['solution_file']
+" "${toml_file}" 2>/dev/null
 }
 
-# Check for project.toml configuration first
-PROJECT_TOML="${BUILD_DIR}/project.toml"
-if [[ -f "${PROJECT_TOML}" ]]; then
-	# shellcheck disable=SC2310 # This function is invoked in an 'if' condition so set -e will be disabled.
-	if parse_project_toml "${PROJECT_TOML}" >/dev/null; then
-		echo ".NET"
-		exit 0
-	fi
+# shellcheck disable=SC2310 # This function is invoked in an 'if' condition so set -e will be disabled.
+if has_dotnet_solution_config "${BUILD_DIR}/project.toml"; then
+	echo ".NET"
+	exit 0
 fi
 
 # Detect .NET project or solution files
