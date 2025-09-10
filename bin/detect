@@ -20,6 +20,9 @@ has_dotnet_solution_config() {
 	# Use Python to parse the TOML file.
 	# The script will exit with 0 (success) only if the entire key path exists.
 	# Any error (KeyError, file corruption, etc.) will cause a non-zero exit code.
+	# Uses tomllib/tomli fallback strategy for cross-stack compatibility:
+	# - heroku-24 (Python 3.11+): uses built-in tomllib
+	# - heroku-22 (Python 3.10): uses installed tomli package with identical API
 	python3 -c "
 import sys
 try:
