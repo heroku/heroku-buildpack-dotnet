@@ -11,13 +11,36 @@ RSpec.describe 'Buildpack detection' do
         expect(clean_output(app.output)).to include(<<~OUTPUT)
           remote: -----> App not compatible with buildpack: #{DEFAULT_BUILDPACK_URL}
           remote:        
-          remote:  !     Error: No .NET solution or project files (such as `foo.sln` or `foo.csproj`) found.
+          remote:  !     Error: Your app is configured to use the .NET buildpack,
+          remote:  !     but we couldn't find a supported .NET project or solution file.
+          remote:  !     
+          remote:  !     A .NET app on Heroku must have either:
+          remote:  !     - A .NET solution ('.sln') or project ('.csproj', '.vbproj', '.fsproj')
+          remote:  !       file in the root directory of its source code.
+          remote:  !     - A 'project.toml' file that specifies the path to the solution file,
+          remote:  !       for example:
+          remote:  !     
+          remote:  !         [com.heroku.buildpacks.dotnet]
+          remote:  !         solution_file = "path/to/your/app.sln"
+          remote:  !     
+          remote:  !     Currently the root directory of your app contains:
+          remote:  !     
+          remote:  !     .gitkeep
+          remote:  !     
+          remote:  !     If your app already has a solution or project file, check that it:
+          remote:  !     
+          remote:  !     1. Is in the top-level directory (not a subdirectory).
+          remote:  !     2. Isn't listed in '.gitignore' or '.slugignore'.
+          remote:  !     3. Has been added to the Git repository and committed.
+          remote:  !     4. If using 'project.toml', check that the 'solution_file' path is
+          remote:  !        correct, points to an existing file, and that the filename's
+          remote:  !        casing matches exactly.
+          remote:  !     
+          remote:  !     Otherwise, add a .NET solution or project file to your app's root directory,
+          remote:  !     or configure the path to it in 'project.toml'.
           remote:  !     
           remote:  !     For more information, see:
-          remote:  !     https://devcenter.heroku.com/articles/dotnet-behavior-in-heroku#auto-detection
-          remote: 
-          remote: 
-          remote:        More info: https://devcenter.heroku.com/articles/buildpacks#detection-failure
+          remote:  !     https://devcenter.heroku.com/articles/dotnet-behavior-in-heroku
         OUTPUT
       end
     end
@@ -31,7 +54,7 @@ RSpec.describe 'Buildpack detection' do
         expect(clean_output(app.output)).to include('App not compatible with buildpack')
         # Ensure fallback error handling works even if Python TOML parsing fails
         expect(clean_output(app.output)).to include(
-          'Error: No .NET solution or project files (such as `foo.sln` or `foo.csproj`) found.'
+          'Error: Your app is configured to use the .NET buildpack'
         )
       end
     end
