@@ -4,7 +4,7 @@
 
 ### Added
 
-- Support for detecting .NET apps via `solution_file` configuration in `project.toml`. ([#119](https://github.com/heroku/heroku-buildpack-dotnet/pull/119))
+- Support for detecting .NET apps via `solution_file` configuration in `project.toml` or `SOLUTION_FILE` environment variable. ([#119](https://github.com/heroku/heroku-buildpack-dotnet/pull/119), [#125](https://github.com/heroku/heroku-buildpack-dotnet/pull/125))
 
 ### Changed
 
