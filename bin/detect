@@ -18,7 +18,23 @@ if find "${BUILD_DIR}" -maxdepth 1 -name "*.sln" -o -name "*.csproj" -o -name "*
 fi
 
 output::error <<EOF
-Error: No .NET solution or project files (such as \`foo.sln\` or \`foo.csproj\`) found.
+Error: Your app is configured to use the .NET buildpack,
+but we couldn't find a supported .NET project or solution file.
+
+A .NET app on Heroku must have a .NET solution ('.sln') or project
+('.csproj', '.vbproj', '.fsproj') file in the root directory of its source code.
+
+Currently the root directory of your app contains:
+
+$(ls -1A --indicator-style=slash "${BUILD_DIR}" || true)
+
+If your app already has a solution or project file, check that it:
+
+1. Is in the top-level directory (not a subdirectory).
+2. Isn't listed in '.gitignore' or '.slugignore'.
+3. Has been added to the Git repository and committed.
+
+Otherwise, add a .NET solution or project file to your app's root directory.
 
 For more information, see:
 https://devcenter.heroku.com/articles/dotnet-behavior-in-heroku#auto-detection
