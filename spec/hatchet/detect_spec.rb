@@ -17,6 +17,8 @@ RSpec.describe 'Buildpack detection' do
           remote:  !     A .NET app on Heroku must have either:
           remote:  !     - A .NET solution ('.sln') or project ('.csproj', '.vbproj', '.fsproj')
           remote:  !       file in the root directory of its source code.
+          remote:  !     - A 'SOLUTION_FILE' environment variable that specifies the path to the
+          remote:  !       solution file.
           remote:  !     - A 'project.toml' file that specifies the path to the solution file,
           remote:  !       for example:
           remote:  !     
@@ -42,6 +44,19 @@ RSpec.describe 'Buildpack detection' do
           remote:  !     For more information, see:
           remote:  !     https://devcenter.heroku.com/articles/dotnet-behavior-in-heroku
         OUTPUT
+      end
+    end
+  end
+
+  context 'when there are no recognized .NET files but SOLUTION_FILE is set' do
+    let(:app) { Hatchet::Runner.new('spec/fixtures/no_dotnet_files', config: { SOLUTION_FILE: 'MyApp.sln' }, allow_failure: true) }
+
+    it 'passes detection with configured solution_file' do
+      app.deploy do |app|
+        # Detection should pass because SOLUTION_FILE is set
+        # Build will fail because the configured solution file doesn't exist
+        expect(clean_output(app.output)).to include('remote: -----> .NET app detected')
+        expect(clean_output(app.output)).to include('Using configured solution file: `MyApp.sln`')
       end
     end
   end

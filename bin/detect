@@ -40,6 +40,12 @@ _ = config['com']['heroku']['buildpacks']['dotnet']['solution_file']
 " "${toml_file}" 2>/dev/null
 }
 
+# Check for SOLUTION_FILE environment variable
+if [[ -n "${SOLUTION_FILE:-}" ]]; then
+	echo ".NET"
+	exit 0
+fi
+
 # shellcheck disable=SC2310 # This function is invoked in an 'if' condition so set -e will be disabled.
 if has_dotnet_solution_config "${BUILD_DIR}/project.toml"; then
 	echo ".NET"
@@ -59,6 +65,8 @@ but we couldn't find a supported .NET project or solution file.
 A .NET app on Heroku must have either:
 - A .NET solution ('.sln') or project ('.csproj', '.vbproj', '.fsproj')
   file in the root directory of its source code.
+- A 'SOLUTION_FILE' environment variable that specifies the path to the
+  solution file.
 - A 'project.toml' file that specifies the path to the solution file,
   for example:
 
