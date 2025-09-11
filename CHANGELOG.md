@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Changed
+
+- Detection failure error messages now include root directory listing and comprehensive troubleshooting guidance. ([#126](https://github.com/heroku/heroku-buildpack-dotnet/pull/126))
 
 ## [v31] - 2025-09-09
 
