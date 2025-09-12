@@ -2,10 +2,6 @@
 
 ## [Unreleased]
 
-### Changed
-
-- The buildpack now only passes detection when solution or project files are present in the root directory. ([#320](https://github.com/heroku/buildpacks-dotnet/pull/320))
-
 ### Added
 
 - Support for configuring the solution file to build and publish via `SOLUTION_FILE` environment variable. ([#319](https://github.com/heroku/buildpacks-dotnet/pull/319))
