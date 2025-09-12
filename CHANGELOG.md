@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Added
+
+- Support for configuring the solution file to build and publish via `SOLUTION_FILE` environment variable. ([#127](https://github.com/heroku/heroku-buildpack-dotnet/pull/127))
+
 ### Changed
 
 - Detection failure error messages now include root directory listing and comprehensive troubleshooting guidance. ([#126](https://github.com/heroku/heroku-buildpack-dotnet/pull/126))
