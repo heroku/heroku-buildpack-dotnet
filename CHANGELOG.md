@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+
+## [v32] - 2025-09-12
+
 ### Added
 
 - Support for configuring the solution file to build and publish via `SOLUTION_FILE` environment variable. ([#127](https://github.com/heroku/heroku-buildpack-dotnet/pull/127))
@@ -225,7 +228,8 @@
 
 - Initial implementation.
 
-[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v31...main
+[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v32...main
+[v32]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v31...v32
 [v31]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v30...v31
 [v30]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v29...v30
 [v29]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v28...v29
