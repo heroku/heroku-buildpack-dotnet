@@ -4,7 +4,7 @@
 
 ### Added
 
-- Support for configuring the solution file to build and publish via `SOLUTION_FILE` environment variable. ([#319](https://github.com/heroku/buildpacks-dotnet/pull/319))
+- Support for configuring the solution file to build and publish via `SOLUTION_FILE` environment variable. ([#127](https://github.com/heroku/heroku-buildpack-dotnet/pull/127))
 
 ### Changed
 
