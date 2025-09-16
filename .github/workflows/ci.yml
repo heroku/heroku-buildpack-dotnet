@@ -80,5 +80,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v5
+      - name: Test launch process parsing
+        run: make test-parse-launch-toml
       - name: Run buildpack using default app fixture
         run: make run
