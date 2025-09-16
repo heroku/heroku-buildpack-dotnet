@@ -1,5 +1,5 @@
 # These targets are not files
-.PHONY: lint lint-scripts lint-ruby lint-python check-format check-format-shell check-format-python format format-shell format-python test-parse-launch-toml run run-ci publish
+.PHONY: lint lint-scripts lint-ruby lint-python check-format check-format-shell check-format-python format format-shell format-python run-python-tests run run-ci publish
 
 STACK ?= heroku-24
 FIXTURE ?= spec/fixtures/basic_web_8.0
@@ -34,9 +34,9 @@ format-shell:
 format-python:
 	@ruff format .
 
-test-parse-launch-toml:
-	@echo "Testing parse_launch_toml.py script functionality using: STACK=$(STACK)"
-	@docker run --rm -v $(PWD):/src:ro "$(STACK_IMAGE_TAG)" python3 /src/tests/test_parse_launch_toml.py
+run-python-tests:
+	@echo "Running Python unit tests using: STACK=$(STACK)"
+	@docker run --rm -v $(PWD):/src:ro "$(STACK_IMAGE_TAG)" python3 -m unittest discover -s /src/tests -p "test_*.py" -v
 
 run:
 	@echo "Running buildpack using: STACK=$(STACK) FIXTURE=$(FIXTURE)"
