@@ -33,18 +33,12 @@ jobs:
           args: "--diff ."
       - name: Run Rubocop
         run: bundle exec rubocop
-      - name: Install Python
-        uses: actions/setup-python@v6
-        with:
-          python-version: "3.11"
-      - name: Upgrade pip and install Ruff
-        run: |
-          python -m pip install --upgrade pip
-          pip install ruff
+      - name: Install the latest version of uv
+        uses: astral-sh/setup-uv@v6
       - name: Run Ruff check
-        run: ruff check --output-format=github
+        run: uvx ruff check --output-format=github
       - name: Run Ruff format
-        run: ruff format --diff
+        run: uvx ruff format --diff
 
   integration-test:
     runs-on: ubuntu-24.04
