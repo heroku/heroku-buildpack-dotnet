@@ -13,7 +13,7 @@ source "${BUILDPACK_DIR:?}/lib/output.sh"
 
 test_process_type="test"
 
-if test_command=$(python3 "${BUILDPACK_DIR}/lib/parse_launch_toml.py" "${CNB_BUILD_DIR}/layers/launch.toml" --process "${test_process_type}" 2>/dev/null); then
+if test_command=$(python3 "${BUILDPACK_DIR}/lib/parse_launch_toml.py" "${CNB_BUILD_DIR}/layers/launch.toml" --process "${test_process_type}"); then
 	echo "Running ${test_process_type} command: \`${test_command}\`" | output::indent
 
 	cd "${BUILD_DIR}"
