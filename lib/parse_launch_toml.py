@@ -4,7 +4,7 @@ Parse CNB launch.toml files for buildpack scripts.
 
 Supports two output formats:
 - --yaml: YAML for bin/release
-- --process <type>: Single command for bin/test
+- --process <type>: Command for a single process type (e.g., as used in `bin/detect`)
 """
 
 import sys
