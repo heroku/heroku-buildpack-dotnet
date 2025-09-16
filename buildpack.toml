@@ -7,7 +7,7 @@ files = [
   "etc/publish.sh",
   "lib/validate_report.sh",
   "spec/",
-  "test/",
+  "tests/",
   ".editorconfig",
   ".gitignore",
   ".rubocop.yml",

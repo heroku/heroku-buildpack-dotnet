@@ -36,7 +36,7 @@ format-python:
 
 test-parse-launch-toml:
 	@echo "Testing parse_launch_toml.py script functionality using: STACK=$(STACK)"
-	@docker run --rm -v $(PWD):/src:ro "$(STACK_IMAGE_TAG)" /src/test/parse-launch-toml-test.sh
+	@docker run --rm -v $(PWD):/src:ro "$(STACK_IMAGE_TAG)" python3 /src/tests/test_parse_launch_toml.py
 
 run:
 	@echo "Running buildpack using: STACK=$(STACK) FIXTURE=$(FIXTURE)"
