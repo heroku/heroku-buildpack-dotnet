@@ -11,11 +11,14 @@ import sys
 import shlex
 from pathlib import Path
 
-try:
+# `tomli`/`tomllib` compatibility layer: Use `tomllib` if available in the
+# standard library (Python 3.11+), and fallback to `tomli` (available in
+# `heroku/heroku:22-build`) when the standard library module is not available.
+# See https://github.com/hukkin/tomli#building-a-tomlitomllib-compatibility-layer
+if sys.version_info >= (3, 11):
     import tomllib
-except ImportError:
+else:
     import tomli as tomllib
-
 
 def parse_processes(toml_path):
     """Parse launch.toml and return process type -> command mapping."""
