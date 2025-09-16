@@ -1,5 +1,5 @@
 # These targets are not files
-.PHONY: lint lint-scripts lint-ruby lint-python check-format check-format-shell format format-shell run run-ci publish
+.PHONY: lint lint-scripts lint-ruby lint-python check-format check-format-shell check-format-python format format-shell format-python run run-ci publish
 
 STACK ?= heroku-24
 FIXTURE ?= spec/fixtures/basic_web_8.0
@@ -18,15 +18,21 @@ lint-ruby:
 lint-python:
 	@ruff check .
 
-check-format: check-format-shell
+check-format: check-format-shell check-format-python
 
 check-format-shell:
 	@shfmt --diff .
 
-format: format-shell
+check-format-python:
+	@ruff format --diff
+
+format: format-shell format-python
 
 format-shell:
 	@shfmt --write --list .
+
+format-python:
+	@ruff format .
 
 run:
 	@echo "Running buildpack using: STACK=$(STACK) FIXTURE=$(FIXTURE)"
