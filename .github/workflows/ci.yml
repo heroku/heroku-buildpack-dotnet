@@ -33,6 +33,10 @@ jobs:
           args: "--diff ."
       - name: Run Rubocop
         run: bundle exec rubocop
+      - name: Install ruff
+        uses: astral-sh/ruff-action@v3
+      - name: Run ruff format
+        run: ruff format --diff
 
   integration-test:
     runs-on: ubuntu-24.04
