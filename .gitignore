@@ -5,3 +5,7 @@
 vendor/bundle/
 .DS_Store
 .rspec_status
+
+# Python-generated files
+__pycache__/
+*.py[oc]
