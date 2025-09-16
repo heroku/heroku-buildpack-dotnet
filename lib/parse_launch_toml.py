@@ -20,24 +20,25 @@ if sys.version_info >= (3, 11):
 else:
     import tomli as tomllib
 
+
 def parse_processes(toml_path):
     """Parse launch.toml and return process type -> command mapping."""
     try:
-        with open(toml_path, 'rb') as f:
+        with open(toml_path, "rb") as f:
             data = tomllib.load(f)
     except (FileNotFoundError, tomllib.TOMLDecodeError):
         return {}
 
     processes = {}
-    for proc in data.get('processes', []):
-        proc_type = proc.get('type')
-        command_list = proc.get('command')
+    for proc in data.get("processes", []):
+        proc_type = proc.get("type")
+        command_list = proc.get("command")
 
         if not proc_type or not isinstance(command_list, list):
             continue
 
         # Extract script content from bash -c commands, otherwise join with escaping
-        if len(command_list) >= 3 and command_list[:2] == ['bash', '-c']:
+        if len(command_list) >= 3 and command_list[:2] == ["bash", "-c"]:
             processes[proc_type] = command_list[2]
         else:
             processes[proc_type] = shlex.join(command_list)
@@ -47,7 +48,10 @@ def parse_processes(toml_path):
 
 def main():
     if len(sys.argv) not in [3, 4]:
-        print("Usage: parse_launch_toml.py <launch.toml> [--yaml|--process <type>]", file=sys.stderr)
+        print(
+            "Usage: parse_launch_toml.py <launch.toml> [--yaml|--process <type>]",
+            file=sys.stderr,
+        )
         sys.exit(1)
 
     toml_path, mode = sys.argv[1], sys.argv[2]
@@ -71,7 +75,10 @@ def main():
             sys.exit(1)
 
     else:
-        print("Usage: parse_launch_toml.py <launch.toml> [--yaml|--process <type>]", file=sys.stderr)
+        print(
+            "Usage: parse_launch_toml.py <launch.toml> [--yaml|--process <type>]",
+            file=sys.stderr,
+        )
         sys.exit(1)
 
 
