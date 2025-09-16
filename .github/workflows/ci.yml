@@ -43,7 +43,7 @@ jobs:
           pip install ruff
       - name: Run Ruff check
         run: ruff check --output-format=github
-      - name: Run ruff format
+      - name: Run Ruff format
         run: ruff format --diff
 
   integration-test:
