@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Changed
+
+- Improved launch process detection with robust `launch.toml` parsing. ([#124](https://github.com/heroku/heroku-buildpack-dotnet/pull/124))
 
 ## [v32] - 2025-09-12
 

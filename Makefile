@@ -1,5 +1,5 @@
 # These targets are not files
-.PHONY: lint lint-scripts lint-ruby check-format format run run-ci publish
+.PHONY: lint lint-scripts lint-ruby lint-python check-format check-format-shell check-format-python format format-shell format-python run-python-tests run run-ci publish
 
 STACK ?= heroku-24
 FIXTURE ?= spec/fixtures/basic_web_8.0
@@ -7,7 +7,7 @@ FIXTURE ?= spec/fixtures/basic_web_8.0
 # Converts a stack name of `heroku-NN` to its build Docker image tag of `heroku/heroku:NN-build`.
 STACK_IMAGE_TAG := heroku/$(subst -,:,$(STACK))-build
 
-lint: lint-scripts check-format lint-ruby
+lint: lint-scripts check-format lint-ruby lint-python
 
 lint-scripts:
 	@git ls-files -z --cached --others --exclude-standard 'bin/*' '*/bin/*' '*.sh' | xargs -0 shellcheck --check-sourced --color=always
@@ -15,11 +15,28 @@ lint-scripts:
 lint-ruby:
 	@bundle exec rubocop
 
-check-format:
+lint-python:
+	@ruff check .
+
+check-format: check-format-shell check-format-python
+
+check-format-shell:
 	@shfmt --diff .
 
-format:
+check-format-python:
+	@ruff format --diff
+
+format: format-shell format-python
+
+format-shell:
 	@shfmt --write --list .
+
+format-python:
+	@ruff format .
+
+run-python-tests:
+	@echo "Running Python unit tests using: STACK=$(STACK)"
+	@docker run --rm -v $(PWD):/src:ro "$(STACK_IMAGE_TAG)" python3 -m unittest discover -s /src/tests -p "test_*.py" -v
 
 run:
 	@echo "Running buildpack using: STACK=$(STACK) FIXTURE=$(FIXTURE)"
