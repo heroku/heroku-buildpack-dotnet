@@ -33,7 +33,7 @@ RSpec.describe 'Buildpack detection' do
           remote:  !     Otherwise, add a .NET solution or project file to your app's root directory.
           remote:  !     
           remote:  !     For more information, see:
-          remote:  !     https://devcenter.heroku.com/articles/dotnet-behavior-in-heroku#auto-detection
+          remote:  !     https://devcenter.heroku.com/articles/dotnet-behavior-in-heroku#auto-detection-and-build-behavior
           remote: 
           remote: 
           remote:        More info: https://devcenter.heroku.com/articles/buildpacks#detection-failure

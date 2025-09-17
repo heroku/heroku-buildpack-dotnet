@@ -37,6 +37,6 @@ If your app already has a solution or project file, check that it:
 Otherwise, add a .NET solution or project file to your app's root directory.
 
 For more information, see:
-https://devcenter.heroku.com/articles/dotnet-behavior-in-heroku#auto-detection
+https://devcenter.heroku.com/articles/dotnet-behavior-in-heroku#auto-detection-and-build-behavior
 EOF
 exit 1
