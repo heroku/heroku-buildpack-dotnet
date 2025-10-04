@@ -14,7 +14,7 @@ RSpec.describe 'Process types' do
     it 'runs the expected test command in CI' do
       app.run_ci do |test_run|
         expect(clean_output(test_run.output)).to include(<<~OUTPUT)
-          Running test command: `dotnet test 'solution with spaces.sln' --verbosity normal`
+          Running test command: `dotnet test 'solution with spaces.slnx' --verbosity normal`
         OUTPUT
       end
     end
