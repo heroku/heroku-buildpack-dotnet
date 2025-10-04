@@ -17,7 +17,7 @@ RSpec.describe 'Buildpack detection' do
           remote:  !     Error: Your app is configured to use the .NET buildpack,
           remote:  !     but we couldn't find a supported .NET project or solution file.
           remote:  !     
-          remote:  !     A .NET app on Heroku must have a .NET solution ('.sln') or project
+          remote:  !     A .NET app on Heroku must have a .NET solution ('.sln', '.slnx') or project
           remote:  !     ('.csproj', '.vbproj', '.fsproj') file in the root directory of its source code.
           remote:  !     
           remote:  !     Currently the root directory of your app contains:
