@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Changed
+
+- Enhanced `dotnet` command failure error messages with clearer guidance and NuGet status link for troubleshooting. ([#133](https://github.com/heroku/heroku-buildpack-dotnet/pull/133))
 
 ## [v33] - 2025-09-17
 
