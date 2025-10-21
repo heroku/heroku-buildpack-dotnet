@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+
+## [v36] - 2025-10-21
+
 ### Added
 
 - Support for the SLNX (`.slnx`) solution file format. ([#138](https://github.com/heroku/heroku-buildpack-dotnet/pull/138), [#135](https://github.com/heroku/heroku-buildpack-dotnet/pull/135))
@@ -249,7 +252,8 @@
 
 - Initial implementation.
 
-[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v35...main
+[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v36...main
+[v36]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v35...v36
 [v35]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v34...v35
 [v34]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v33...v34
 [v33]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v32...v33
