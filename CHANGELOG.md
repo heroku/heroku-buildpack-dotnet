@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Added
+
+- Support for the SLNX (`.slnx`) solution file format. ([#329](https://github.com/heroku/buildpacks-dotnet/pull/329))
+
 
 ## [v35] - 2025-10-14
 
