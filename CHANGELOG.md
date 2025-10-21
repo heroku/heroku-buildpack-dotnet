@@ -4,7 +4,7 @@
 
 ### Added
 
-- Support for the SLNX (`.slnx`) solution file format. ([#138](https://github.com/heroku/heroku-buildpack-dotnet/pull/138))
+- Support for the SLNX (`.slnx`) solution file format. ([#138](https://github.com/heroku/heroku-buildpack-dotnet/pull/138), [#135](https://github.com/heroku/heroku-buildpack-dotnet/pull/135))
 
 ## [v35] - 2025-10-14
 
