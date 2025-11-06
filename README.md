@@ -12,9 +12,13 @@ See the [Getting Started on Heroku with .NET](https://devcenter.heroku.com/artic
 
 ## Application Requirements
 
-A solution file (e.g. `MySolution.sln` or `MySolution.slnx`) or .NET project file (e.g. `*.csproj`, `*.vbproj` or `*.fsproj`) must be present in the root (top-level) directory of your app's source code. If the root directory contains both solution and project files, the solution file will be preferred for the build and publish process.
+A .NET solution (e.g. `MySolution.sln` or `MySolution.slnx`), project (e.g. `*.csproj`, `*.vbproj` or `*.fsproj`) or C# (e.g. `MyApp.cs`) file must be present in the application’s root directory.
 
-The buildpack support C#, Visual Basic and F# projects using the .NET and ASP.NET Core frameworks (version 8.0 and up).
+If the root directory contains both solution and project files, the solution file will be preferred for the build and publish process.
+
+If the root directory contains neither solution or project files, the C# file will be published as a [.NET 10 file-based app](https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-10/sdk#file-based-apps-enhancements).
+
+The buildpack supports C#, Visual Basic and F# apps using the .NET and ASP.NET Core frameworks (version 8.0 and up).
 
 ## Using the Heroku .NET buildpack
 
