@@ -53,7 +53,7 @@ RSpec.describe 'Buildpack execution' do
     it 'infers .NET 10 version requirement and register default process type' do
       app.deploy do |app|
         expect(clean_output(app.output)).to include(<<~OUTPUT)
-          Detected version requirement: ^10.0
+          Detected version requirement: `^10.0`
         OUTPUT
         expect(clean_output(app.output)).to include(<<~OUTPUT)
           Default types for buildpack -> foo
