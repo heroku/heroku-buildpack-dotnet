@@ -47,6 +47,21 @@ RSpec.describe 'Buildpack execution' do
     end
   end
 
+  context 'when building a valid .NET file-based app' do
+    let(:app) { Hatchet::Runner.new('spec/fixtures/file_based_app_basic_console') }
+
+    it 'infers .NET 10 version requirement and register default process type' do
+      app.deploy do |app|
+        expect(clean_output(app.output)).to include(<<~OUTPUT)
+          Detected version requirement: `^10.0`
+        OUTPUT
+        expect(clean_output(app.output)).to include(<<~OUTPUT)
+          Default types for buildpack -> foo
+        OUTPUT
+      end
+    end
+  end
+
   context 'when building an app with MSBUILD_VERBOSITY_LEVEL=invalid' do
     let(:app) do
       Hatchet::Runner.new(
