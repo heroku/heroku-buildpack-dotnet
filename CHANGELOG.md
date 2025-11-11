@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Added
+
+- Support for .NET SDK versions: 8.0.122, 8.0.319, 8.0.416, 9.0.112, 9.0.307, 10.0.100. ([#144](https://github.com/heroku/heroku-buildpack-dotnet/pull/144))
+
 ### Changed
 
 - Refactored .NET project file parsing to better align with MSBuild behavior and project file semantics. ([#143](https://github.com/heroku/heroku-buildpack-dotnet/pull/143))
