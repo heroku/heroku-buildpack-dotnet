@@ -6,7 +6,6 @@
 
 - Refactored .NET project file parsing to allign with MSBuild behavior and project file semantics. ([#335](https://github.com/heroku/buildpacks-dotnet/pull/335))
 
-
 ## [v36] - 2025-10-21
 
 ### Added
