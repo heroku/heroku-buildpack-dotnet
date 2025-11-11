@@ -4,7 +4,7 @@
 
 ### Changed
 
-- Refactored .NET project file parsing to align with MSBuild behavior and project file semantics. ([#143](https://github.com/heroku/heroku-buildpack-dotnet/pull/143))
+- Refactored .NET project file parsing to better align with MSBuild behavior and project file semantics. ([#143](https://github.com/heroku/heroku-buildpack-dotnet/pull/143))
 
 ## [v36] - 2025-10-21
 
