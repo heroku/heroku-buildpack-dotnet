@@ -2,10 +2,6 @@
 
 ## [Unreleased]
 
-### Added
-
-- Support for .NET 10 file-based apps. ([#336](https://github.com/heroku/buildpacks-dotnet/pull/336))
-
 ### Changed
 
 - Refactored .NET project file parsing to allign with MSBuild behavior and project file semantics. ([#335](https://github.com/heroku/buildpacks-dotnet/pull/335))
