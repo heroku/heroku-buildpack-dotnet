@@ -1,4 +1,4 @@
-![dotnet-buildpack-github-banner](https://github.com/user-attachments/assets/6f83e3de-ae3c-4e1c-b72e-60c69fc63041)
+![dotnet-buildpack-github-banner](docs/assets/images/heroku-buildpack-dotnet-banner.png)
 
 # Heroku Buildpack: .NET
 
