@@ -11,7 +11,6 @@
 - `global.json` SDK version matching now correctly respects .NET SDK feature band boundaries when using `patch` or `latestPatch` roll-forward policies. ([#152](https://github.com/heroku/heroku-buildpack-dotnet/pull/152))
 - The default `global.json` roll-forward policy now defaults to `patch`. ([#152](https://github.com/heroku/heroku-buildpack-dotnet/pull/152))
 
-
 ## [v38] - 2025-11-20
 
 ### Added
