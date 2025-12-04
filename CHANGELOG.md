@@ -2,6 +2,14 @@
 
 ## [Unreleased]
 
+### Changed
+
+- Improved error handling when configured solution file doesn't exist, has an invalid extension, or is not a simple filename. ([#152](https://github.com/heroku/heroku-buildpack-dotnet/pull/152))
+
+### Fixed
+
+- `global.json` SDK version matching now correctly respects .NET SDK feature band boundaries when using `patch` or `latestPatch` roll-forward policies. ([#152](https://github.com/heroku/heroku-buildpack-dotnet/pull/152))
+- The default `global.json` roll-forward policy now defaults to `patch`. ([#152](https://github.com/heroku/heroku-buildpack-dotnet/pull/152))
 
 ## [v38] - 2025-11-20
 
