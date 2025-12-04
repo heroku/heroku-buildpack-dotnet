@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+
+## [v39] - 2025-12-04
+
 ### Changed
 
 - Improved error handling when configured solution file doesn't exist, has an invalid extension, or is not a simple filename. ([#152](https://github.com/heroku/heroku-buildpack-dotnet/pull/152))
@@ -277,7 +280,8 @@
 
 - Initial implementation.
 
-[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v38...main
+[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v39...main
+[v39]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v38...v39
 [v38]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v37...v38
 [v37]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v36...v37
 [v36]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v35...v36
