@@ -2,6 +2,16 @@
 
 ## [Unreleased]
 
+### Changed
+
+- Improved error handling when configured solution file doesn't exist, has an invalid extension, or is not a simple filename. ([#340](https://github.com/heroku/buildpacks-dotnet/pull/340))
+- The buildpack now configures the `web` process type as the default launch process when only a single web application is detected. ([#350](https://github.com/heroku/buildpacks-dotnet/pull/350))
+
+### Fixed
+
+- `global.json` SDK version matching now correctly respects .NET SDK feature band boundaries when using `patch` or `latestPatch` roll-forward policies. ([#348](https://github.com/heroku/buildpacks-dotnet/pull/348))
+- The default `global.json` roll-forward policy now defaults to `patch`. ([#348](https://github.com/heroku/buildpacks-dotnet/pull/348))
+
 
 ## [v38] - 2025-11-20
 
