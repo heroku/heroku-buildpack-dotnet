@@ -4,7 +4,7 @@
 
 ### Changed
 
-- Improved `global.json` parsing to validate `rollForward` policy values and provide clearer error messages for invalid SDK versions. ([#357](https://github.com/heroku/buildpacks-dotnet/pull/357))
+- Improved `global.json` parsing to validate `rollForward` policy values and provide clearer error messages for invalid SDK versions. ([#154](https://github.com/heroku/heroku-buildpack-dotnet/pull/154))
 
 ### Added
 
