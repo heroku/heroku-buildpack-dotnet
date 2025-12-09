@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+
+## [v40] - 2025-12-09
+
 ### Changed
 
 - Improved `global.json` parsing to validate `rollForward` policy values and provide clearer error messages for invalid SDK versions. ([#154](https://github.com/heroku/heroku-buildpack-dotnet/pull/154))
@@ -287,7 +290,8 @@
 
 - Initial implementation.
 
-[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v39...main
+[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v40...main
+[v40]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v39...v40
 [v39]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v38...v39
 [v38]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v37...v38
 [v37]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v36...v37
