@@ -2,6 +2,14 @@
 
 ## [Unreleased]
 
+### Changed
+
+- Improved `global.json` parsing to validate `rollForward` policy values and provide clearer error messages for invalid SDK versions. ([#357](https://github.com/heroku/buildpacks-dotnet/pull/357))
+
+### Added
+
+- Support for .NET SDK versions: 10.0.101.
+
 
 ## [v39] - 2025-12-04
 
