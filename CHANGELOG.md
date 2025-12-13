@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+
+## [v41] - 2025-12-13
+
 ### Added
 
 - Support for configuring the target framework using `Directory.Build.props`. ([#156](https://github.com/heroku/heroku-buildpack-dotnet/pull/156))
@@ -298,7 +301,8 @@
 
 - Initial implementation.
 
-[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v40...main
+[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v41...main
+[v41]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v40...v41
 [v40]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v39...v40
 [v39]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v38...v39
 [v38]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v37...v38
