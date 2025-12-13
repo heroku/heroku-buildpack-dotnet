@@ -2,6 +2,14 @@
 
 ## [Unreleased]
 
+### Added
+
+- Support for configuring the target framework using `Directory.Build.props`. ([#156](https://github.com/heroku/heroku-buildpack-dotnet/pull/156))
+- Support for configuring the `AssemblyName` property in file-based apps. ([#156](https://github.com/heroku/heroku-buildpack-dotnet/pull/156))
+
+### Fixed
+
+- Fixed an issue where leading whitespace in file-based app configuration values was incorrectly included. ([#156](https://github.com/heroku/heroku-buildpack-dotnet/pull/156))
 
 ## [v40] - 2025-12-09
 
