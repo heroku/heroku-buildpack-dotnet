@@ -11,7 +11,6 @@
 
 - Fixed an issue where leading whitespace in file-based app configuration values was incorrectly included. ([#156](https://github.com/heroku/heroku-buildpack-dotnet/pull/156))
 
-
 ## [v40] - 2025-12-09
 
 ### Changed
