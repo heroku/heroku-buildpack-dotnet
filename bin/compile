@@ -47,6 +47,7 @@ download_and_extract_cnb() {
 	local temp_dir
 	temp_dir=$(mktemp -d)
 	# Download the CNB, modifying file paths to remove leading '/' during extraction
+	# shellcheck disable=SC2310 # This function is invoked in an 'if' condition so set -e will be disabled.
 	if ! {
 		{
 			curl \
@@ -63,7 +64,7 @@ download_and_extract_cnb() {
 					--transform 's|^/||' \
 					--extract \
 					--directory "${temp_dir}"
-		}
+		} |& output::indent
 	}; then
 		output::error <<-EOF
 			Error: Failed to download/extract buildpack from GitHub:
