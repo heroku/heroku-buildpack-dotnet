@@ -52,6 +52,7 @@ download_and_extract_cnb() {
 		--location \
 		--fail \
 		--max-time 60 \
+		--retry-max-time 60 \
 		--retry 5 \
 		--retry-connrefused \
 		--connect-timeout 5 \
