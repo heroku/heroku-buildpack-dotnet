@@ -51,7 +51,7 @@ download_and_extract_cnb() {
 		--no-progress-meter \
 		--location \
 		--fail \
-		--retry 3 \
+		--retry 5 \
 		--retry-connrefused \
 		--connect-timeout 10 \
 		"${buildpack_url}" \
