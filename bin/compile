@@ -53,7 +53,7 @@ download_and_extract_cnb() {
 		--fail \
 		--retry 5 \
 		--retry-connrefused \
-		--connect-timeout 10 \
+		--connect-timeout 5 \
 		"${buildpack_url}" \
 		| tar \
 			--transform 's|^/||' \
