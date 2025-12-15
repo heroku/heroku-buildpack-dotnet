@@ -47,36 +47,60 @@ download_and_extract_cnb() {
 	local temp_dir
 	temp_dir=$(mktemp -d)
 	# Download the CNB, modifying file paths to remove leading '/' during extraction
-	# shellcheck disable=SC2310 # This function is invoked in an 'if' condition so set -e will be disabled.
-	if ! {
-		{
-			curl \
-				--location \
-				--fail \
-				--no-progress-meter \
-				--max-time 60 \
-				--retry-max-time 60 \
-				--retry 5 \
-				--retry-connrefused \
-				--connect-timeout 5 \
-				"${buildpack_url}" \
-				| tar \
-					--transform 's|^/||' \
-					--extract \
-					--directory "${temp_dir}"
-		} |& output::indent
-	}; then
+
+	# Temporarily disable 'set -e' to prevent immediate exit on error.
+	set +e
+
+	# shellcheck disable=SC2310
+	{
+		curl \
+			--location \
+			--fail \
+			--no-progress-meter \
+			--max-time 60 \
+			--retry-max-time 60 \
+			--retry 5 \
+			--retry-connrefused \
+			--connect-timeout 5 \
+			"${buildpack_url}" \
+			| tar \
+				--transform 's|^/||' \
+				--extract \
+				--directory "${temp_dir}" \
+				2> >(grep -v -F -e "This does not look like a tar archive" -e "Exiting with failure status" >&2 || true)
+
+		# Capture the exit codes immediately.
+		# PIPESTATUS[0] is curl, PIPESTATUS[1] is tar.
+		declare -a statuses=("${PIPESTATUS[@]}")
+	} > >(output::indent || true) 2>&1
+
+	# Re-enable exit on error
+	set -e
+
+	# Handle errors separately.
+	if [[ "${statuses[0]}" -ne 0 ]]; then
 		output::error <<-EOF
-			Error: Failed to download/extract buildpack from GitHub:
+			Error: Failed to download buildpack from GitHub:
 			${buildpack_url}
 
-			In some cases, this happens due to an unstable network,
-			or GitHub's API/CDN.
+			This is likely due to a network issue or a GitHub API/CDN outage.
 
 			Please try again to see if the error resolves itself.
 
 			If that doesn't help, check the status of GitHub here:
 			https://www.githubstatus.com
+		EOF
+		exit 1
+	elif [[ "${statuses[1]}" -ne 0 ]]; then
+		output::error <<-EOF
+			Error: Failed to extract buildpack archive.
+
+			The buildpack archive downloaded successfully, but the data appears
+			to be corrupted (tar exit code: ${statuses[1]}).
+
+			Please try again to see if the error resolves itself. If the issue
+			persists, file an issue here:
+			https://github.com/heroku/heroku-buildpack-dotnet/issues/new
 		EOF
 		exit 1
 	fi
