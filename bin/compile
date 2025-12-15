@@ -48,9 +48,9 @@ download_and_extract_cnb() {
 	temp_dir=$(mktemp -d)
 	# Download the CNB, modifying file paths to remove leading '/' during extraction
 	if ! curl \
-		--no-progress-meter \
 		--location \
 		--fail \
+		--no-progress-meter \
 		--max-time 60 \
 		--retry-max-time 60 \
 		--retry 5 \
