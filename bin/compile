@@ -47,7 +47,20 @@ download_and_extract_cnb() {
 	local temp_dir
 	temp_dir=$(mktemp -d)
 	# Download the CNB, modifying file paths to remove leading '/' during extraction
-	if ! curl --silent --show-error --location --fail --retry 3 --retry-connrefused --connect-timeout 10 "${buildpack_url}" | tar --transform 's|^/||' --extract --directory "${temp_dir}"; then
+	if ! curl \
+		--silent \
+		--show-error \
+		--location \
+		--fail \
+		--retry 3 \
+		--retry-connrefused \
+		--connect-timeout 10 \
+		"${buildpack_url}" \
+		| tar \
+			--transform 's|^/||' \
+			--extract \
+			--directory "${temp_dir}" \
+		; then
 		output::error <<-EOF
 			Error: Failed to download/extract buildpack from GitHub:
 			${buildpack_url}
