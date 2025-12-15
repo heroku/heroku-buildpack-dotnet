@@ -51,6 +51,7 @@ download_and_extract_cnb() {
 		--no-progress-meter \
 		--location \
 		--fail \
+		--max-time 60 \
 		--retry 5 \
 		--retry-connrefused \
 		--connect-timeout 5 \
