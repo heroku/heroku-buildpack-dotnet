@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+
+## [v42] - 2026-01-08
+
 ### Changed
 
 - Improved error handling when downloading and extracting the .NET CNB from GitHub. ([#158](https://github.com/heroku/heroku-buildpack-dotnet/pull/158))
@@ -308,7 +311,8 @@
 
 - Initial implementation.
 
-[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v41...main
+[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v42...main
+[v42]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v41...v42
 [v41]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v40...v41
 [v40]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v39...v40
 [v39]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v38...v39
