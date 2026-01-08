@@ -8,7 +8,7 @@
 
 ### Changed
 
-- Improved error handling when downloading and extracting .NET CNB from GitHub. ([#158](https://github.com/heroku/heroku-buildpack-dotnet/pull/158))
+- Improved error handling when downloading and extracting the .NET CNB from GitHub. ([#158](https://github.com/heroku/heroku-buildpack-dotnet/pull/158))
 
 ## [v41] - 2025-12-13
 
