@@ -31,6 +31,23 @@ def process_span_by_type($summary):
     $summary + {
       sdk_version_requirement: get_attr("cnb.dotnet.version_requirement")
     }
+  elif has_name("project_launch_process") then
+    # Collect all exception messages from the current span into a list
+    [ .events[]? | select(.name == "exception") | get_attr("exception.message") ] as $new_msgs
+    | if ($new_msgs | length) > 0 then
+        $summary + {
+          launch_process_exceptions: (
+            if $summary.launch_process_exceptions then
+              # Append new messages to the existing string
+              $summary.launch_process_exceptions + "; " + ($new_msgs | join("; "))
+            else
+              ($new_msgs | join("; "))
+            end
+          )
+        }
+      else
+        $summary
+      end
   elif has_namespace("buildpack_heroku_dotnet::layers::sdk") then
     if has_name("handle") then
       $summary + { sdk_layer_duration_ns: duration_ns }
