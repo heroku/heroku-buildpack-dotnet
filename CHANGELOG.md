@@ -4,7 +4,7 @@
 
 ### Fixed
 
-- Launch process detection now skips projects whose executables don't exist at the expected path. ([#162](https://github.com/heroku/heroku-buildpack-dotnet/pull/162))
+- Launch process detection now skips projects if the published executable is missing from the expected path. ([#162](https://github.com/heroku/heroku-buildpack-dotnet/pull/162))
 
 ### Changed
 
