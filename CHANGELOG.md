@@ -2,13 +2,13 @@
 
 ## [Unreleased]
 
-### Fixed
-
-- Launch process detection now skips projects if the published executable is missing from the expected path. ([#162](https://github.com/heroku/heroku-buildpack-dotnet/pull/162))
-
 ### Changed
 
 - Improved error handling when downloading and extracting the .NET CNB from GitHub. ([#158](https://github.com/heroku/heroku-buildpack-dotnet/pull/158))
+
+### Fixed
+
+- Launch process detection now skips projects if the published executable is missing from the expected path. ([#162](https://github.com/heroku/heroku-buildpack-dotnet/pull/162))
 
 ## [v41] - 2025-12-13
 
