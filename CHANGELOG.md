@@ -5,6 +5,9 @@
 
 ## [v43] - 2026-01-09
 
+### Added
+
+- Added metrics for launch process detection errors. ([#164](https://github.com/heroku/heroku-buildpack-dotnet/pull/164))
 
 ## [v42] - 2026-01-08
 
