@@ -3,6 +3,12 @@
 ## [Unreleased]
 
 
+## [v43] - 2026-01-09
+
+### Added
+
+- Added metrics for launch process detection errors. ([#164](https://github.com/heroku/heroku-buildpack-dotnet/pull/164))
+
 ## [v42] - 2026-01-08
 
 ### Changed
@@ -311,7 +317,8 @@
 
 - Initial implementation.
 
-[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v42...main
+[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v43...main
+[v43]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v42...v43
 [v42]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v41...v42
 [v41]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v40...v41
 [v40]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v39...v40
