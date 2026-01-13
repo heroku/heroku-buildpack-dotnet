@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Added
+
+- Support for .NET SDK versions: 8.0.123, 8.0.417, 9.0.113, 9.0.309, 10.0.102. ([#166](https://github.com/heroku/heroku-buildpack-dotnet/pull/166))
 
 ## [v43] - 2026-01-09
 
