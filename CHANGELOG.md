@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Fixed
+
+- The .NET SDK inventory was updated with correct checksum values for version 9.0.113 release artifacts. ([#375](https://github.com/heroku/buildpacks-dotnet/pull/375))
+
 
 ## [v44] - 2026-01-13
 
