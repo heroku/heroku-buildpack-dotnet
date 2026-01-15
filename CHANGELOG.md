@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+
+## [v45] - 2026-01-15
+
 ### Fixed
 
 - The .NET SDK inventory was updated with correct checksum values for version 9.0.113 release artifacts. ([#168](https://github.com/heroku/heroku-buildpack-dotnet/pull/168))
@@ -326,7 +329,8 @@
 
 - Initial implementation.
 
-[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v44...main
+[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v45...main
+[v45]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v44...v45
 [v44]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v43...v44
 [v43]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v42...v43
 [v42]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v41...v42
