@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Added
+
+- Support for .NET SDK versions: 9.0.310.
+
 
 ## [v45] - 2026-01-15
 
