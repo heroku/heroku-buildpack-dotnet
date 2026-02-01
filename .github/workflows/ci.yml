@@ -34,7 +34,7 @@ jobs:
       - name: Run Rubocop
         run: bundle exec rubocop
       - name: Install the latest version of uv
-        uses: astral-sh/setup-uv@681c641aba71e4a1c380be3ab5e12ad51f415867 # v7.1.6
+        uses: astral-sh/setup-uv@803947b9bd8e9f986429fa0c5a41c367cd732b41 # v7.2.1
         with:
           enable-cache: false
       - name: Run Ruff check
