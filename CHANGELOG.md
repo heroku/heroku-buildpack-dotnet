@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Changed
+
+- Increased number of retries when downloading the .NET CNB from GitHub. ([#178](https://github.com/heroku/heroku-buildpack-dotnet/pull/178))
 
 ## [v47] - 2026-02-10
 
