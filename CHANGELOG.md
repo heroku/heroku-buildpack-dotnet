@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+
+## [v48] - 2026-03-04
+
 ### Changed
 
 - Increased number of retries when downloading the .NET CNB from GitHub. ([#178](https://github.com/heroku/heroku-buildpack-dotnet/pull/178))
@@ -344,7 +347,8 @@
 
 - Initial implementation.
 
-[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v47...main
+[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v48...main
+[v48]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v47...v48
 [v47]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v46...v47
 [v46]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v45...v46
 [v45]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v44...v45
