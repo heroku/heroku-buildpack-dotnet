@@ -38,7 +38,7 @@ RSpec.describe 'Buildpack detection' do
           remote:  !     https://devcenter.heroku.com/articles/dotnet-behavior-in-heroku#auto-detection-and-build-behavior
           remote: 
           remote: 
-          remote:        More info: https://devcenter.heroku.com/articles/buildpacks#detection-failure
+          remote:        More info: https://devcenter.heroku.com/articles/buildpacks#buildpack-auto-detection
         OUTPUT
       end
     end
