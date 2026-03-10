@@ -14,7 +14,7 @@ def has_name($expected_name):
   .name == $expected_name;
 
 def has_namespace($expected_namespace):
-  get_attr("code.namespace") == $expected_namespace;
+  get_attr("code.module.name") == $expected_namespace;
 
 def increment_counter($current_value):
   ($current_value // 0) + 1;
