@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 ENV['HATCHET_BUILDPACK_BASE'] ||= 'https://github.com/heroku/heroku-buildpack-dotnet.git'
-ENV['HATCHET_DEFAULT_STACK'] ||= 'heroku-24'
+ENV['HATCHET_DEFAULT_STACK'] ||= 'heroku-26'
 
 require 'rspec/core'
 require 'rspec/retry'
