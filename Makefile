@@ -1,7 +1,7 @@
 # These targets are not files
 .PHONY: lint lint-scripts lint-ruby lint-python check-format check-format-shell check-format-python format format-shell format-python run-python-tests run run-ci publish
 
-STACK ?= heroku-24
+STACK ?= heroku-26
 FIXTURE ?= spec/fixtures/basic_web_8.0
 
 # Converts a stack name of `heroku-NN` to its build Docker image tag of `heroku/heroku:NN-build`.
