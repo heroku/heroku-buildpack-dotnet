@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# shellcheck disable=SC2154 # TODO: Env var is referenced but not assigned.
 # shellcheck disable=SC2250 # TODO: Use braces around variable references even when not strictly required.
 
 set -euo pipefail
@@ -9,27 +8,6 @@ set -euo pipefail
 
 # Buildpack Utilities
 # -------------------
-
-# Usage: $ set-env key value
-# NOTICE: Expects PROFILE_PATH & EXPORT_PATH to be set!
-set_env() {
-	# TODO: automatically create profile path directory if it doesn't exist.
-	echo "export $1=$2" >>"$PROFILE_PATH"
-	echo "export $1=$2" >>"$EXPORT_PATH"
-}
-
-# Usage: $ set-default-env key value
-# NOTICE: Expects PROFILE_PATH & EXPORT_PATH to be set!
-set_default_env() {
-	echo "export $1=\${$1:-$2}" >>"$PROFILE_PATH"
-	echo "export $1=\${$1:-$2}" >>"$EXPORT_PATH"
-}
-
-# Usage: $ un-set-env key
-# NOTICE: Expects PROFILE_PATH to be set!
-un_set_env() {
-	echo "unset $1" >>"$PROFILE_PATH"
-}
 
 # Usage: $ _env-blacklist pattern
 # Outputs a regex of default blacklist env vars.
@@ -57,24 +35,4 @@ export_env() {
 			:
 		done
 	fi
-}
-
-# Usage: $ sub-env command
-# Runs a subshell of specified command with user-provided config.
-# NOTICE: Expects ENV_DIR to be set. WHITELIST & BLACKLIST are optional.
-# Examples:
-#    WHITELIST=${2:-''}
-#    BLACKLIST=${3:-'^(GIT_DIR|PYTHONHOME|LD_LIBRARY_PATH|LIBRARY_PATH|PATH)$'}
-sub_env() {
-	(
-		# TODO: Fix https://github.com/heroku/buildpack-stdlib/issues/37
-		export_env "$ENV_DIR" "${WHITELIST:-}" "${BLACKLIST:-}"
-
-		"$@"
-	)
-}
-
-# Returns the current time, in milliseconds.
-nowms() {
-	date +%s%3N
 }
