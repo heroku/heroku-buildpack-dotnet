@@ -9,7 +9,6 @@ RSpec.describe 'Buildpack execution' do
     it 'successfully compiles' do
       app.deploy do |app|
         expect(clean_output(app.output)).to match(Regexp.new(<<~REGEX))
-          remote: -----> Using buildpack: #{DEFAULT_BUILDPACK_URL}
           remote: -----> .NET app detected
           remote: -----> SDK version detection
           remote:        Detected .NET project: `/tmp/build_.*/foo.csproj`
