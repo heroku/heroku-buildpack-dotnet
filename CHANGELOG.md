@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+
+## [v52] - 2026-04-21
+
 ### Fixed
 
 - Transient HTTP errors (e.g. connection failures, timeouts, 5xx responses) when downloading the .NET SDK now retry, matching the existing behaviour for I/O errors. ([#195](https://github.com/heroku/heroku-buildpack-dotnet/pull/195))
@@ -372,7 +375,8 @@
 
 - Initial implementation.
 
-[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v51...main
+[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v52...main
+[v52]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v51...v52
 [v51]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v50...v51
 [v50]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v49...v50
 [v49]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v48...v49
