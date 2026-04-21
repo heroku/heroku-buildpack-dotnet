@@ -4,7 +4,7 @@
 
 ### Fixed
 
-- Transient HTTP errors (e.g. connection failures, timeouts, 5xx responses) when downloading the .NET SDK now retry, matching the existing behaviour for I/O errors. ([#415](https://github.com/heroku/buildpacks-dotnet/pull/415))
+- Transient HTTP errors (e.g. connection failures, timeouts, 5xx responses) when downloading the .NET SDK now retry, matching the existing behaviour for I/O errors. ([#195](https://github.com/heroku/heroku-buildpack-dotnet/pull/195))
 
 ### Added
 
