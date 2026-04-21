@@ -2,6 +2,14 @@
 
 ## [Unreleased]
 
+### Fixed
+
+- Transient HTTP errors (e.g. connection failures, timeouts, 5xx responses) when downloading the .NET SDK now retry, matching the existing behaviour for I/O errors. ([#415](https://github.com/heroku/buildpacks-dotnet/pull/415))
+
+### Added
+
+- Support for .NET SDK versions: 10.0.107, 10.0.203.
+
 
 ## [v51] - 2026-04-14
 
