@@ -11,3 +11,4 @@
 CHANGELOG.md @runesoerensen
 Gemfile.lock @runesoerensen
 /.github/workflows/ @runesoerensen
+/bin/compile @runesoerensen
