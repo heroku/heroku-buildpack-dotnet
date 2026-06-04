@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+
+## [v54] - 2026-06-04
+
 ### Changed
 
 - The "Unsupported target framework" error message now lists the actual supported TFMs (`net8.0`, `net9.0`, `net10.0`) instead of stale values. ([#431](https://github.com/heroku/buildpacks-dotnet/pull/431))
@@ -385,7 +388,8 @@
 
 - Initial implementation.
 
-[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v53...main
+[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v54...main
+[v54]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v53...v54
 [v53]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v52...v53
 [v52]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v51...v52
 [v51]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v50...v51
