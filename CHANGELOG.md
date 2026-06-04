@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Changed
+
+- The "Unsupported target framework" error message now lists the actual supported TFMs (`net8.0`, `net9.0`, `net10.0`) instead of stale values. ([#431](https://github.com/heroku/buildpacks-dotnet/pull/431))
+
 
 ## [v53] - 2026-05-13
 
