@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Added
+
+- Support for .NET SDK versions: 8.0.128, 8.0.422, 9.0.118, 9.0.315, 10.0.109, 10.0.301.
+
 
 
 
