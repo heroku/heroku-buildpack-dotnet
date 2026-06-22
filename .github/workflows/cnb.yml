@@ -73,8 +73,15 @@ jobs:
           # Update bin/compile
           sed -i "s/DOTNET_CNB_VERSION=\".*\"/DOTNET_CNB_VERSION=\"$next_release\"/" bin/compile
 
-          # Update CHANGELOG.md
-          awk -v notes="$SAFE_NOTES" '/^## \[Unreleased\]/ {print; print ""; print notes; next} 1' CHANGELOG.md > temp && mv temp CHANGELOG.md
+          # Update CHANGELOG.md: insert the notes under the "## [Unreleased]" heading,
+          # collapsing any blank lines already sitting beneath it down to a single one so
+          # we don't leave stray whitespace (e.g. when previous runs accumulated blank lines).
+          awk -v notes="$SAFE_NOTES" '
+            /^## \[Unreleased\]/ {print; print ""; print notes; in_section=1; next}
+            in_section && /^[ \t]*$/ {next}
+            in_section {print ""; in_section=0}
+            {print}
+          ' CHANGELOG.md > temp && mv temp CHANGELOG.md
 
       - name: Create Pull Request
         id: create_pr
