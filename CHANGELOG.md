@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Changed
+
+- Updated libcnb to 0.31.0, which includes OpenTelemetry crate upgrades. ([#450](https://github.com/heroku/buildpacks-dotnet/pull/450))
+
 ## [v55] - 2026-06-09
 
 ### Added
