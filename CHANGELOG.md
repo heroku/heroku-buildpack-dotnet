@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Added
+
+- Support for .NET SDK versions: 8.0.129, 8.0.423, 9.0.119, 9.0.316, 10.0.110, 10.0.302.
+
 ### Changed
 
 - Updated libcnb to 0.31.0, which includes OpenTelemetry crate upgrades. ([#450](https://github.com/heroku/buildpacks-dotnet/pull/450))
