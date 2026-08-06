@@ -7,8 +7,8 @@ Supports two output formats:
 - --process <type>: Command for a single process type (e.g., as used in `bin/test`)
 """
 
-import sys
 import shlex
+import sys
 from pathlib import Path
 
 # `tomli`/`tomllib` compatibility layer: Use `tomllib` if available in the

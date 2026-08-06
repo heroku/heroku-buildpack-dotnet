@@ -51,12 +51,11 @@ class TestParseLaunchToml(unittest.TestCase):
 
     def setUp(self):
         """Set up a temporary TOML file for each test."""
-        self.temp_toml_file = tempfile.NamedTemporaryFile(
+        with tempfile.NamedTemporaryFile(
             mode="w", delete=False, suffix=".toml"
-        )
-        self.temp_toml_file.write(TEST_TOML_CONTENT)
-        self.temp_toml_file.close()
-        self.toml_path = self.temp_toml_file.name
+        ) as temp_toml_file:
+            temp_toml_file.write(TEST_TOML_CONTENT)
+        self.toml_path = temp_toml_file.name
 
     def tearDown(self):
         """Clean up the temporary TOML file after each test."""
