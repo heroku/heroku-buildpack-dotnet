@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+
+## [v59] - 2026-10-15
+
 ### Fixed
 
 - On Heroku-22, provide a private default `XDG_RUNTIME_DIR` for launch processes so .NET can initialize named mutexes when the stack's symlinked `HOME` is rejected. ([#482](https://github.com/heroku/buildpacks-dotnet/pull/482))
@@ -427,7 +430,8 @@
 
 - Initial implementation.
 
-[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v58...main
+[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v59...main
+[v59]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v58...v59
 [v58]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v57...v58
 [v57]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v56...v57
 [v56]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v55...v56
