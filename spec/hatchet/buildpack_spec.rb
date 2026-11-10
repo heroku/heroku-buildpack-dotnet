@@ -56,6 +56,17 @@ RSpec.describe 'Buildpack execution' do
     end
   end
 
+  context 'when building a valid .NET 11 app' do
+    let(:app) { Hatchet::Runner.new('spec/fixtures/basic_web_11.0') }
+
+    it 'successfully compiles without an end-of-support warning' do
+      app.deploy do |app|
+        expect(clean_output(app.output)).to include('Detected version requirement: `^11.0`')
+        expect(clean_output(app.output)).not_to include('reached end of support')
+      end
+    end
+  end
+
   context 'when building a valid .NET file-based app' do
     let(:app) { Hatchet::Runner.new('spec/fixtures/file_based_app_basic_console') }
 
