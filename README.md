@@ -28,7 +28,7 @@ It's suggested that you use the latest version of the release buildpack. You can
 heroku buildpacks:set heroku/dotnet
 ```
 
-Your builds will always used the latest published release of the buildpack.
+Your builds will always use the latest published release of the buildpack.
 
 ## Locking to a buildpack version
 
