@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+
+## [v61] - 2026-11-10
+
 ### Changed
 
 - Builds using .NET 8 or .NET 9 now display an end-of-support warning. ([#494](https://github.com/heroku/buildpacks-dotnet/pull/494))
@@ -443,7 +446,8 @@
 
 - Initial implementation.
 
-[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v60...main
+[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v61...main
+[v61]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v60...v61
 [v60]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v59...v60
 [v59]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v58...v59
 [v58]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v57...v58
