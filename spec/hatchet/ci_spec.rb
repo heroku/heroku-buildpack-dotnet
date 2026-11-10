@@ -15,6 +15,16 @@ RSpec.describe 'Heroku CI' do
                  Detecting version requirement from root global.json file
                  Detected version requirement: `=9.0.201`
                  Resolved .NET SDK version `9.0.201` \\(linux-amd64\\)
+          [[:blank:]]*
+           !     .NET 9 reached end of support on November 10, 2026.
+           ![[:blank:]]*
+           !     Your app can continue to build while this SDK remains in the Heroku
+           !     inventory, but you should upgrade to a supported .NET version as soon
+           !     as possible.
+           ![[:blank:]]*
+           !     For more information, see:
+           !     https://devcenter.heroku.com/articles/dotnet-heroku-support-reference#supported-net-versions
+          [[:blank:]]*
           -----> SDK installation
                  Downloading SDK from https://builds.dotnet.microsoft.com/dotnet/Sdk/9.0.201/dotnet-sdk-9.0.201-linux-x64.tar.gz .*
                  Verifying SDK checksum
