@@ -30,12 +30,6 @@ heroku buildpacks:set heroku/dotnet
 
 Your builds will always used the latest published release of the buildpack.
 
-If you need to use the git url, you can use the `latest` tag to make sure you always have the latest release. **The `main` branch will always have the latest buildpack updates, but it does not correspond with a numbered release.**
-
-```sh
-heroku buildpacks:set https://github.com/heroku/heroku-buildpack-dotnet#latest -a my-app
-```
-
 ## Locking to a buildpack version
 
 Even though it's suggested to use the latest release, you may want to lock dependencies - including buildpacks - to a specific version.
