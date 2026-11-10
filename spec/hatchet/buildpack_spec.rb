@@ -15,6 +15,16 @@ RSpec.describe 'Buildpack execution' do
           remote:        Inferring version requirement from `/tmp/build_.*/foo.csproj`
           remote:        Detected version requirement: .*
           remote:        Resolved .NET SDK version .*
+          remote:[[:blank:]]*
+          remote:  !     .NET 8 reached end of support on November 10, 2026.
+          remote:  ![[:blank:]]*
+          remote:  !     Your app can continue to build while this SDK remains in the Heroku
+          remote:  !     inventory, but you should upgrade to a supported .NET version as soon
+          remote:  !     as possible.
+          remote:  ![[:blank:]]*
+          remote:  !     For more information, see:
+          remote:  !     https://devcenter.heroku.com/articles/dotnet-heroku-support-reference#supported-net-versions
+          remote:[[:blank:]]*
           remote: -----> SDK installation
           remote:        Downloading SDK from .*
           remote:        Verifying SDK checksum
