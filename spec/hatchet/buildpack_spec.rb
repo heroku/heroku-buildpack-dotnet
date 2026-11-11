@@ -70,10 +70,10 @@ RSpec.describe 'Buildpack execution' do
   context 'when building a valid .NET file-based app' do
     let(:app) { Hatchet::Runner.new('spec/fixtures/file_based_app_basic_console') }
 
-    it 'infers .NET 10 version requirement and register default process type' do
+    it 'infers .NET 11 version requirement and registers default process type' do
       app.deploy do |app|
         expect(clean_output(app.output)).to include(<<~OUTPUT)
-          Detected version requirement: `^10.0`
+          Detected version requirement: `^11.0`
         OUTPUT
         expect(clean_output(app.output)).to include(<<~OUTPUT)
           Default types for buildpack -> foo
