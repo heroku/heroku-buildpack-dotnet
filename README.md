@@ -16,7 +16,7 @@ A .NET solution (e.g. `MySolution.sln` or `MySolution.slnx`), project (e.g. `*.c
 
 If the root directory contains both solution and project files, the solution file will be preferred for the build and publish process.
 
-If the root directory contains neither solution or project files, the C# file will be published as a [.NET 10 file-based app](https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-10/sdk#file-based-apps-enhancements).
+If the root directory contains neither solution or project files, the C# file will be published as a [.NET 11 file-based app](https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/overview).
 
 The buildpack supports C#, Visual Basic and F# apps using the .NET and ASP.NET Core frameworks (version 8.0 and up).
 
