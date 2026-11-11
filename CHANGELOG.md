@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+
+## [v62] - 2026-11-11
+
 ### Changed
 
 - File-based apps without an explicit target framework now default to .NET 11. ([#495](https://github.com/heroku/buildpacks-dotnet/pull/495))
@@ -449,7 +452,8 @@
 
 - Initial implementation.
 
-[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v61...main
+[unreleased]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v62...main
+[v62]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v61...v62
 [v61]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v60...v61
 [v60]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v59...v60
 [v59]: https://github.com/heroku/heroku-buildpack-dotnet/compare/v58...v59
